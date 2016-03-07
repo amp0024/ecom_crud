@@ -1,0 +1,75 @@
+{% extends 'layout.html' %}
+
+{% block title %}{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    
+    <div class="row">
+    <fieldset class="scheduler-border">
+        <legend class="scheduler-border">Create Product</legend>
+        <div class="control-group">
+        <div class="col-md-4">
+          <form class="" action'#' method="post">
+            <label class="control-label input-label" for="startTime">Name :</label>
+            <div>
+                <input type="text" class="form-control" type="text" id="startTime" name="name" placeholder="Name" required maxlength="40" value=""/>
+            </div>
+
+            <br>
+
+            <label class="control-label input-label" for="startTime">Type :</label>
+            <div>
+                <input type="text" class="form-control" type="text" id="startTime" name="Type" placeholder="Type" required maxlength="40" value=""/>
+            </div>
+            <br>
+            <label class="control-label input-label" for="startTime">Price :</label>
+            <div>
+                <input type="text" class="form-control" type="text" id="startTime" name="price" placeholder="price" required maxlength="40" value=""/>
+            </div>
+            <br>
+
+            <label class="control-label input-label" for="startTime">Volume :</label>
+            <div>
+              
+                <br>
+                <select id="productType" name="volume" class="form-control product-type" required>
+                   <option value=""> Select Volume</option>
+                   <option value="AL">6 Pack</option>
+                   <option value="AK">Case</option>
+                   <option value="AZ">Growler</option>
+                   <option value="AR">Micro Keg</option>
+                   <option value="CA">Half Keg</option>
+                </select>
+            </div>
+            <br>
+            <label class="control-label input-label" for="startTime">Image :</label>
+            <div>
+                <input type="text" required name="image" value="">
+            </div>
+            <br>
+            <label class="control-label input-label" for="startTime">Manufactur :</label>
+            <div>
+                <select id="productType" name="mfc_id" class="form-control product-type" required>
+                   <option value="">Select Name</option>
+                   <option value="1">New Belgium</option>
+                   <option value="2">Coors</option>
+                   <option value="3">Boulder Beer Co.</option>
+               
+                </select>
+            </div>
+            <br>
+            
+                    <a href="/"><button class="btn btn-danger btn-lg" type=""><span style='Times New Roman'>Cancel</span></button></a>
+                    <button class="btn btn-success btn-lg" type="submit"><span style='Times New Roman'>Submit</span></button>
+            </form>        
+            </div> 
+        </div>                    
+        
+    </fieldset>
+    </div>
+</div>
+
+    
+{% endblock %}

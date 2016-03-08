@@ -1,8 +1,173 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/* add custom styles */
+.navbar-brand img{height:100%;}
+
+@media screen and (min-width:767px){
+    .navbar-brand-centered {
+        position: absolute;
+        left: 50%;
+        display: block;
+        width: 160px;
+        text-align: center;
+        background-color: transparent;
+       
+    }
+    .navbar>.container .navbar-brand-centered, 
+    .navbar>.container-fluid .navbar-brand-centered {
+        margin-left: -110px;
+    }
+
+
+.navbar-nav>li>a {padding-top: 15px;padding-bottom: 15px; 
+font-family: 'Arial', 'Helvetica'; font-size: 18px;}
+
+
+
+.navbar-brand{top: 0px;}
+
+.navbar-brand-centered{height:120px;}
+
+.navbar-default {background-color:transparent; border-color:transparent; padding-top: 65px;}
 }
 
-a {
-  color: #00B7FF;
+@media (max-width: 801px) {
+.navbar-default{padding-top:0;}
+.navbar-brand{padding: 10px 10px;}
+.navbar-brand-centered{height:100px;}
+.navbar-toggle{bottom:-20px;}
 }
+
+/*/// Body ///*/
+
+.mt-100 {
+    margin-top: 100px; 
+}
+.mb-100 {
+    margin-bottom: 100px;
+}
+
+.header {
+    padding-top: 0px;
+    background-color: #eee;
+    overflow: hidden;
+}
+.footer {
+    color: #887;
+    background-color: #eee;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.content {
+    position: relative;
+    display: table;
+    width: 100%;
+    min-height: 100vh;
+}
+.pull-middle {
+    display: table-cell;
+    vertical-align: middle;
+
+}
+
+.btn {
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.btn-circle {
+    border-radius: 5px;
+}
+
+.input-group input {
+    border: 0;
+    box-shadow: none;
+    padding-right: 30px;
+}
+.input-group input:focus,
+.input-group input:active {
+    outline: 0;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
+}
+.input-group-btn:last-child>.btn {
+    z-index: 2;
+    margin-left: -18px;   
+    border-radius: 5px;
+}
+
+.panel-body {
+	box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
+}
+
+/*//// Admin Product Inventory ////*/
+
+.productbox {
+    background-color:#ffffff;
+    padding:10px;
+	margin:5px 0;
+    border: 1px solid #cfcfcf;
+    -moz-box-shadow: 2px 2px 4px 0px #cfcfcf;
+    -webkit-box-shadow: 2px 2px 4px 0px #cfcfcf;
+    -o-box-shadow: 2px 2px 4px 0px #cfcfcf;
+    box-shadow: 2px 2px 4px 0px #cfcfcf;
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=#cfcfcf, Direction=134, Strength=4);
+}
+
+.producttitle {
+    font-weight:bold;
+    font-size:1.2em;
+	padding:5px 0 5px 0;
+}
+
+.producttext {
+    
+}
+
+.productprice {
+	border-top:1px solid #dadada;
+	padding-top:5px;
+
+
+}
+
+.pricetext {
+	font-weight:bold;
+	font-size:1.4em;
+}
+
+/*//// Client side product lists ////*/
+
+.panel-pricing {
+  -moz-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  -webkit-transition: all .3s ease;
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
+}
+.panel-pricing:hover {
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.6);
+}
+.panel-pricing .panel-heading {
+  padding: 20px 10px;
+}
+.panel-pricing .panel-heading .fa {
+  margin-top: 10px;
+  font-size: 58px;
+}
+.panel-pricing .list-group-item {
+  color: #777777;
+  border-bottom: 1px solid rgba(250, 250, 250, 0.5);
+}
+.panel-pricing .list-group-item:last-child {
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.panel-pricing .list-group-item:first-child {
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+}
+.panel-pricing .panel-body {
+  background-color: #f0f0f0;
+  font-size: 40px;
+  color: #777777;
+  padding: 20px;
+  margin: 0px;
+}
+

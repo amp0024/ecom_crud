@@ -1,0 +1,4 @@
+name,email,password,access_level,mfc_id
+Odell Admin,admin@admin.com,secret,1,1
+Lefthand Admin,admin@admin.com,secret,1,2
+Avery Admin,admin@admin.com,secret,1,3

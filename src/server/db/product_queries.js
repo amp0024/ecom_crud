@@ -18,6 +18,7 @@ module.exports = {
     return Products().where('id', id).update(product);
   },
   deleteProduct: function(id){
+    console.log('id');
     return Products().where('id', id).delete();
   }
 }

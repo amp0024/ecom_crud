@@ -22,4 +22,10 @@ router.post('/', function(req, res, next){
   })
 })
 
+router.delete('/:product_id', function(req, res, next){
+  query.deleteProduct(req.params.product_id).then(function(){
+    res.json({ status: "Deleted"});
+  })
+})
+
 module.exports = router;

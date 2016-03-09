@@ -6,7 +6,7 @@ function Products() {
 
 module.exports = {
   getProducts: function(){
-    return Products().select();
+    return Products().select().join('manufacturers', 'mfc_id', 'manufacturers.id');
   },
   getProduct: function(id){
     return Products().where('id', id);

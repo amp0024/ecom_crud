@@ -128,8 +128,8 @@ describe('API routes', function() {
                 res.should.have.status(200);
                 res.should.be.json;
                 res.body.status.should.equal('Deleted');
-        done();
+                done();
+            });
+        });
     });
-});
-    })
 });

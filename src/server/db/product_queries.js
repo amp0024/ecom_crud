@@ -12,7 +12,7 @@ module.exports = {
     return Products().where('id', id);
   },
   createProduct: function(product){
-    return Products().insert(product);
+    return Products().insert(product, 'id');
   },
   editProduct: function(product, id){
     return Products().where('id', id).update(product);

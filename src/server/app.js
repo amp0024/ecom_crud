@@ -39,9 +39,9 @@ app.use(express.static(path.join(__dirname, '../client')));
 
 // *** main routes *** //
 app.use('/', routes);
-app.use('/products', products);
+app.use('/api/products', products);
 app.use('/api/manufacturers', manufacturers);
-app.use('/admins', admins);
+app.use('/api/admins', admins);
 app.use('/api/customers', customers);
 
 // catch 404 and forward to error handler

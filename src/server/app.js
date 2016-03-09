@@ -34,6 +34,18 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+var session = require('express-session');
+var passport = require('./lib/auth');
+
+app.use(session({
+  secret: process.env.SECRET_KEY || 'change_me',
+  resave: false,
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(express.static(path.join(__dirname, '../client')));
 
 

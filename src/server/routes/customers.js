@@ -29,6 +29,7 @@ router.post('/customerlogin', function(req, res, next){
           console.log(err);
           return next(err);
         } else {
+          req.flash('info', 'Welcome '+customer.name+'! You have logged in');
           return res.redirect('/');
         }
       });
@@ -52,6 +53,7 @@ router.post('/customerregister', function(req, res, next){
       } else {
         console.log('Inserting!');
         Customers().insert({name: name, email: email, password: password}).then(function(){
+          req.flash('info', 'Welcome, '+name+'! You have signed up!')
           res.redirect('/');
         }).catch(function(err){
           console.log('other error');
@@ -67,6 +69,7 @@ router.post('/customerregister', function(req, res, next){
 
 router.get('/logout', helpers.isAuthenticated, function(req, res, next) {
   req.logout();
+  req.flash('info', 'You have logged out');
   res.redirect('/');
 });
 

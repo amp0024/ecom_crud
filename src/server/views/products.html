@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+{% block title %}{% endblock %}
+
+
+{% block content %}
+       <section class="section">
+               <br/><br/><br/>
+
+            <!-- Plans -->
+            <section id="plans">
+                <div class="container">
+               <div class="pull-middle">
+                       <h1 class="page-header">Check out some of our local beers.</h1>
+           </div>
+           <br>
+                    <div class="row">
+                   {% for product in products %}
+                        <!-- item -->
+                        <div class="col-md-3 text-center">
+                            <div class="panel panel-pricing">
+                                <div class="panel-heading">
+                                    <i class="fa fa-desktop"></i>
+                                    <h3>{{product.name}}</h3>
+                                </div>
+                                <div class="panel-body text-center">
+                                    <img src="{{ product.img_url }}" height="200px">
+                                </div>
+
+                                <ul class="list-group text-center">
+                                    <li class="list-group-item"><i class="fa fa-check"></i>{{ product.contact }}</li>
+
+                                    <li class="list-group-item"><i class="fa fa-check"></i>{{ product.type }}</li>
+                                    <li class="list-group-item"><i class="fa fa-check"></i>{{ product.location }}</li>
+                                   <li class="list-group-item"><i class="fa fa-check"></i>{{ product.logo_url }}</li>
+
+                                </ul>
+                                <div class="panel-footer">
+                                    <a class="btn btn-lg btn-block btn-success" href="/api/products/{{product.id}}">Learn more!</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /item -->
+                   {% endfor %}
+
+
+                    </div>
+                </div>
+            </section>
+
+{% endblock %}

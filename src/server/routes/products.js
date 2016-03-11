@@ -19,6 +19,7 @@ router.get('/:product_id', function(req, res, next){
 
 
 
+
 router.post('/', function(req, res, next){
   query.createProduct(req.body).then(function(data){
     console.log("inserted!");

@@ -13,21 +13,23 @@
                 <div class="pull-middle">
                         <h1 class="page-header">Your Shopping Cart</h1>
                 </div>
-                    <div id="cartTable" class="bs-example">
-
-                    </div>
-                    <div class="bs-example" data-example-id="simple-table">
-                    <table class="table"> <caption>Your Shopping Cart</caption>
-                    	<thead> <tr> <th>Item #</th> <th>Product Name</th> <th>Qty</th> <th>Price</th> </tr> </thead>
-                    		<tbody>
-                    			<tr> <th scope="row">1</th> <td>Product Name</td> <td>1</td> <td>9.99</td> </tr>
-                    			<tr> <th scope="row">1</th> <td>Product Name</td> <td>1</td> <td>9.99</td> </tr>
-                    			<tr> <th scope="row">1</th> <td>Product Name</td> <td>1</td> <td>9.99</td> </tr>
-                    		</tbody>
+                  
+                    
+                    <table class="table" id="cartTable">
+                    	 <tr> 
+                    	 <th>Product Name</th> 
+                    	 <th>Product Volume</th>
+                    	 <th>Product Price</th>
+                    	 </tr>
+                    		
                     	</table>
                     </div>
+                    <button type="button" class="btn btn-success navbar-btn btn-circle"><a href="/products">Back to Shopping</a></button>
                 </div>
-            </div>
+            
         </section>
+
+
+
 
 {% endblock %}

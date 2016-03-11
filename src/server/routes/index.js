@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var query = require('../db/product_queries');
 var prodQueries = require('../db/product_queries');
 var manuQueries = require('../db/manufacturers_queries');
 
@@ -21,6 +21,11 @@ router.get('/cart', function(req, res, next){
   res.render('shoppingCart');
 });
 
+router.get('/products', function(req, res, next){
+	query.getProducts().then(function(products){
+  res.render('products', { products: products });
+});
+});
 
 
 // router.get('/avery', function(req, res, next) {

@@ -6,27 +6,26 @@
 
 {% block content %}
 
+		<section class="section">
+            <div class="container">
+                <div class="row">
+                <div class="pull-middle">
+                        <h1 class="page-header">Your Shopping Cart</h1>
+                </div>
 
-        <section class="section">
-           <div class="container">
-               <div class="row">
-               <div class="pull-middle">
-                       <h1 class="page-header">Your Shopping Cart</h1>
-               </div>
 
+                    <table class="table" id="cartTable">
+                    	 <tr>
+                    	 <th>Product Name</th>
+                    	 <th>Product Volume</th>
+                    	 <th>Product Price</th>
+                    	 </tr>
 
-                   <table class="table" id="cartTable">
-                        <tr>
-                        <th>Product Name</th>
-                        <th>Product Volume</th>
-                        <th>Product Price</th>
-                        </tr>
+                    	</table>
+                    </div>
+                    <button type="button" class="btn btn-success navbar-btn btn-circle"><a href="/products">Back to Shopping</a></button>
+                </div>
 
-                       </table>
-                   </div>
-                   <button type="button" class="btn btn-success navbar-btn btn-circle"><a href="/products">Back to Shopping</a></button>
-               </div>
-
-       </section>
+        </section>
 
 {% endblock %}

@@ -18,12 +18,13 @@ $('.purchaseProduct').on('click', function(){
 });
 
 $.ajax('/api/products').done(function(data){
- console.log(data);
- var seshCart = JSON.parse(sessionStorage.products);
- seshCart.map(function(id){
-   $('#cartTable').append('<tr><td>'+data[JSON.parse(id)-1].name+'</td><td>'+data[JSON.parse(id)-1].volume+'</td><td>'+'$'+data[JSON.parse(id)-1].price+'</td></tr>');
+  console.log(data);
+  var seshCart = JSON.parse(sessionStorage.products);
+  seshCart.map(function(id){
+    $('#cartTable').append('<tr><td>'+data[JSON.parse(id)-1].name+'</td><td>'+data[JSON.parse(id)-1].volume+'</td><td>'+'$'+data[JSON.parse(id)-1].price+'</td></tr>');
 
- });
- console.log(seshCart);
+  });
+  console.log(seshCart);
 
- });
+  });
+

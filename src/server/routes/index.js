@@ -1,16 +1,11 @@
 var express = require('express');
-var router = express.Router();
-var stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+var router  = express.Router();
+var query   = require('../db/product_queries');
+var stripe  = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
 
 var prodQueries = require('../db/product_queries');
 var manuQueries = require('../db/manufacturers_queries');
-
-
-// router.get('/', function(req, res, next) {
-//     manuQueries.getManufacturers().then(function(mfc){
-//       res.render('index', { manufacturers: mfc });
-//   });
-// });
 
 router.get('/', function(req, res, next) {
   prodQueries.getProducts().then(function(products){
@@ -20,6 +15,12 @@ router.get('/', function(req, res, next) {
 
 router.get('/cart', function(req, res, next){
   res.render('shoppingCart');
+});
+
+router.get('/products', function(req, res, next){
+	query.getProducts().then(function(products){
+  res.render('products', { products: products });
+  });
 });
 
 router.post('/checkout', function(req, res, next){
@@ -33,9 +34,6 @@ router.post('/checkout', function(req, res, next){
 router.get('/checkout', function(req, res, next){
   res.render('checkout');
 });
-
-
-
 
 router.post('/charge', function(req, res,next) {
   var stripeToken = req.body.stripeToken;

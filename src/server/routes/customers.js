@@ -54,7 +54,7 @@ router.post('/customerregister', function(req, res, next){
         Customers().insert({name: name, email: email, password: password}).then(function(){
           res.redirect('/');
         }).catch(function(err){
-          console.log('other error-9');
+          console.log('other error');
           return next(err);
         });
       }

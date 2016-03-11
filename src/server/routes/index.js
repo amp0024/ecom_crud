@@ -9,7 +9,7 @@ var manuQueries = require('../db/manufacturers_queries');
 
 router.get('/', function(req, res, next) {
   prodQueries.getProducts().then(function(products){
-      res.render('index', { products: products });
+      res.render('index', { products: products, message: req.flash('info') });
   });
 });
 
@@ -55,6 +55,7 @@ router.post('/charge', function(req, res,next) {
       console.log(err);
       res.send('error');
     } else {
+      req.flash('info', 'You bought some stuff!')
       res.redirect('/');
     }
   });

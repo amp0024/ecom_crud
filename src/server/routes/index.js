@@ -17,6 +17,10 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/cart', function(req, res, next){
+  res.render('shoppingCart');
+});
+
 
 
 // router.get('/avery', function(req, res, next) {

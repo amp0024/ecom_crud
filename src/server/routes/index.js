@@ -13,6 +13,10 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/login', function(req, res, next){
+  res.render('customerLogin');
+});
+
 router.get('/cart', function(req, res, next){
   res.render('shoppingCart');
 });

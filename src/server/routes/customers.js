@@ -52,7 +52,7 @@ router.post('/customerregister', function(req, res, next){
       } else {
         console.log('Inserting!');
         Customers().insert({name: name, email: email, password: password}).then(function(){
-          res.redirect('/avery');
+          res.redirect('/');
         }).catch(function(err){
           console.log('other error1');
           return next(err);

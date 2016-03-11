@@ -55,7 +55,7 @@ router.post('/charge', function(req, res,next) {
       console.log(err);
       res.send('error');
     } else {
-      res.send('success');
+      res.redirect('/');
     }
   });
 });

@@ -1,7 +1,23 @@
 // add scripts
 
+
+//The function below is janky as hell, need refactoring.
 $(document).on('ready', function() {
   console.log('sanity check!');
+  console.log(sessionStorage.products);
+  $.ajax('/api/products').done(function(data){
+    console.log(data);
+  var seshCart = JSON.parse(sessionStorage.products);
+    var runTotal = 0;
+    seshCart.map(function(id){
+        $('#checkoutProducts').append(
+          '<h1>'+data[JSON.parse(id)-1].name+" "+data[JSON.parse(id)-1].price+'</h1>'
+        );
+        runTotal += parseFloat(data[JSON.parse(id)-1].price)
+    });
+    $("#total").html(runTotal);
+  });
+
 });
 
 var prodArr = [];
@@ -25,6 +41,7 @@ $.ajax('/api/products').done(function(data){
 
   });
   console.log(seshCart);
+});
 
-  });
+
 

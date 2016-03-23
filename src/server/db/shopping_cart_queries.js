@@ -15,7 +15,7 @@ module.exports = {
   createCart: function(customer_id){
     return ShoppingCart().insert({customer_id: customer_id, is_active: true});
   },
-  addToCart: function(id, product){
-    return CartProduct().insert({}).where('id', id);
+  addToCart: function(product){
+    return CartProduct().insert({product_id: product.product_id, cart_id: product.cart_id, quantity: 1});
   }
 };

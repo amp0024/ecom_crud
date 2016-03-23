@@ -18,6 +18,7 @@ var customers = require('./routes/customers.js');
 var manufacturers = require('./routes/manufacturers.js');
 var admins = require('./routes/admins.js');
 var products = require('./routes/products.js');
+var carts = require('./routes/shoppingCart.js')
 
 // *** express instance *** //
 var app = express();
@@ -59,6 +60,7 @@ app.use('/api/products', products);
 app.use('/api/manufacturers', manufacturers);
 app.use('/api/admins', admins);
 app.use('/api/customers', customers);
+app.use('/api/carts', carts);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

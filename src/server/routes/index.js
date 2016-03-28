@@ -7,7 +7,7 @@ var stripe  = require('stripe')(process.env.STRIPE_SECRET_KEY);
 var prodQueries = require('../db/product_queries');
 var manuQueries = require('../db/manufacturers_queries');
 
-router.get('/', function(req, res, next) {
+router.get('/asdf', function(req, res, next) {
   prodQueries.getProducts().then(function(products){
       res.render('index', { products: products, message: req.flash('info') });
   });

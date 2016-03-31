@@ -9,8 +9,9 @@ angular.module('ecomApp', ['ngRoute'])
 
     /* LANDING PAGE */
     .when('/', {
-        templateUrl: '/app/views/index.html',
-        css: '/styles/css/main.css'
+        templateUrl: '/app/views/home.html',
+        css: '/styles/css/main.css',
+        controller: 'productCtrl'
     })
     .otherwise('/');
 });

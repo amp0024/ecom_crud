@@ -9,21 +9,23 @@ var manuQueries = require('../db/manufacturers_queries');
 
 router.get('/asdf', function(req, res, next) {
   prodQueries.getProducts().then(function(products){
-      res.render('index', { products: products, message: req.flash('info') });
+      // res.render('index', { products: products, message: req.flash('info') });
+      res.json(products);
   });
 });
 
-router.get('/login', function(req, res, next){
-  res.render('customerLogin');
-});
+// router.get('/login', function(req, res, next){
+//   res.render('customerLogin');
+// });
 
-router.get('/cart', function(req, res, next){
-  res.render('shoppingCart');
-});
+// router.get('/cart', function(req, res, next){
+//   res.render('shoppingCart');
+// });
 
 router.get('/products', function(req, res, next){
 	query.getProducts().then(function(products){
-  res.render('products', { products: products });
+  // res.render('products', { products: products });
+  res.json(products);
   });
 });
 
@@ -35,9 +37,9 @@ router.post('/checkout', function(req, res, next){
   });
 });
 
-router.get('/checkout', function(req, res, next){
-  res.render('checkout');
-});
+// router.get('/checkout', function(req, res, next){
+//   res.render('checkout');
+// });
 
 router.post('/charge', function(req, res,next) {
   var stripeToken = req.body.stripeToken;
@@ -55,7 +57,7 @@ router.post('/charge', function(req, res,next) {
       console.log(err);
       res.send('error');
     } else {
-      req.flash('info', 'You bought some stuff!')
+      // req.flash('info', 'You bought some stuff!')
       res.redirect('/');
     }
   });

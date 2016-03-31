@@ -10,13 +10,13 @@ function Customers(){
 }
 
 
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+// router.get('/', function(req, res, next) {
+//   res.render('index', { title: 'Express' });
+// });
 
-router.get('/customerlogin', function(req, res, next){
-  res.render('customerLogin', { title: 'Login' });
-});
+// router.get('/customerlogin', function(req, res, next){
+//   res.render('customerLogin', { title: 'Login' });
+// });
 
 router.post('/customerlogin', function(req, res, next){
   passport.authenticate('local', function(err, customer) {
@@ -29,7 +29,7 @@ router.post('/customerlogin', function(req, res, next){
           console.log(err);
           return next(err);
         } else {
-          req.flash('info', 'Welcome '+customer.name+'! You have logged in');
+          // req.flash('info', 'Welcome '+customer.name+'! You have logged in');
           return res.redirect('/');
         }
       });
@@ -37,9 +37,9 @@ router.post('/customerlogin', function(req, res, next){
   })(req, res, next);
 });
 
-router.get('/customerregister', function(req, res, next){
-  res.render('customerRegister', { title: 'Register' });
-});
+// router.get('/customerregister', function(req, res, next){
+//   res.render('customerRegister', { title: 'Register' });
+// });
 
 router.post('/customerregister', function(req, res, next){
   var email = req.body.email;
@@ -49,11 +49,11 @@ router.post('/customerregister', function(req, res, next){
   Customers().where('email', email).then(function(customer){
     console.log('Customer', customer);
        if(customer.length) {
-        return res.send('Already taken');
+        return res.json('Already taken');
       } else {
         console.log('Inserting!');
         Customers().insert({name: name, email: email, password: password}).then(function(){
-          req.flash('info', 'Welcome, '+name+'! You have signed up!')
+          // req.flash('info', 'Welcome, '+name+'! You have signed up!')
           res.redirect('/');
         }).catch(function(err){
           console.log('other error');
@@ -69,12 +69,12 @@ router.post('/customerregister', function(req, res, next){
 
 router.get('/logout', helpers.isAuthenticated, function(req, res, next) {
   req.logout();
-  req.flash('info', 'You have logged out');
+  // req.flash('info', 'You have logged out');
   res.redirect('/');
 });
 
-router.get('/profile', helpers.isAuthenticated, function(req, res, next){
-  res.render('customerProfile', {title: 'Profile'});
-});
+// router.get('/profile', helpers.isAuthenticated, function(req, res, next){
+//   res.render('customerProfile', {title: 'Profile'});
+// });
 
 module.exports = router;

@@ -1,0 +1,80 @@
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6">
+                    <div class="content">
+                      <div class="pull-middle">
+                        <h1 class="page-header">Quick Colorado Beer Storefront</h1>
+                        <p class="lead">Sign up below to learn more and get deals sent to your email.</p>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <form method="POST" action="/api/customers/customerregister" role="form">
+                                    <div class="input-group">
+                                        <input type="name" name="name" class="form-control" placeholder="Your Name" required>
+                                        <input type="email" name="email" class="form-control" placeholder="Email Address" required>
+                                        <input type="password" name="password" class="form-control" placeholder="Create a Password" required>
+                                        <span class="input-group-btn">
+                                          <button class="btn btn-success btn-circle" type="submit">Sign up for free</button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <br><br>
+                <div class="col-md-5 col-md-offset-1 text-center mt-100 mb-100">
+                    <div class="phone">
+                        <img class="img-responsive img-rounded" src="./img/mainlogo.png">
+                    </div>
+                </div>
+              </div>
+            </div>
+        </header>
+        <section class="section">
+                <br/><br/><br/>
+
+        <!-- Plans -->
+        <section id="plans">
+            <div class="container">
+                <div class="pull-middle">
+                        <h1 class="page-header">Check out some of our local beers.</h1>
+            </div>
+            <br>
+                <div class="row" >
+                    <!-- item -->
+                    <div class="col-md-3 text-center" ng-repeat="product in products">
+                        <div class="panel panel-pricing">
+                            <div class="panel-heading">
+                                <i class="fa fa-desktop"></i>
+                                <h3>{{product.name}}</h3>
+                            </div>
+                            <div class="panel-body text-center">
+                                <img src="{{ product.img_url }}" height="200px">
+                            </div>
+
+                            <ul class="list-group text-center">
+                                <li class="list-group-item"><i class="fa fa-check"></i>{{ product.type }}</li>
+
+
+
+
+                            </ul>
+                            <div class="panel-footer">
+                                <a class="btn btn-lg btn-block btn-success" href="/api/products/{{product.id}}">Learn more!</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /item -->
+
+
+                </div>
+            </div>
+        </section>
+         <section class="section">
+                <br/><br/><br/>
+        <section class="section">
+            <div class="container">
+
+            </div>
+        </section>

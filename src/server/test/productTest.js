@@ -115,7 +115,7 @@ describe('API routes', function() {
                     res.body[0].should.have.property('mfc_id');
                     res.body[0].mfc_id.should.equal(1);
                     done();
-                })
+                });
             });
         });
     });

@@ -7,6 +7,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var swig = require('swig');
+var session = require('express-session');
+var passport = require('./lib/auth');
+var flash = require('connect-flash');
 
 
 // *** routes *** //
@@ -15,15 +18,16 @@ var customers = require('./routes/customers.js');
 var manufacturers = require('./routes/manufacturers.js');
 var admins = require('./routes/admins.js');
 var products = require('./routes/products.js');
+var carts = require('./routes/shoppingCart.js')
 
 // *** express instance *** //
 var app = express();
 
 
 // *** view engine *** //
-var swig = new swig.Swig();
-app.engine('html', swig.renderFile);
-app.set('view engine', 'html');
+// var swig = new swig.Swig();
+// app.engine('html', swig.renderFile);
+// app.set('view engine', 'html');
 
 
 // *** static directory *** //
@@ -35,9 +39,9 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(flash());
 
-var session = require('express-session');
-var passport = require('./lib/auth');
+
 
 app.use(session({
   secret: process.env.SECRET_KEY || 'change_me',
@@ -51,11 +55,16 @@ app.use(express.static(path.join(__dirname, '../client')));
 
 
 // *** main routes *** //
+app.get('/', function(req, res, next) {
+  console.log("index.html");
+  res.sendFile(path.join(__dirname, '../client/app/views', 'index.html'));
+});
 app.use('/', routes);
 app.use('/api/products', products);
 app.use('/api/manufacturers', manufacturers);
 app.use('/api/admins', admins);
 app.use('/api/customers', customers);
+app.use('/api/carts', carts);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -72,7 +81,7 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
+    res.json({
       message: err.message,
       error: err
     });
@@ -83,7 +92,7 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.render('error', {
+  res.json({
     message: err.message,
     error: {}
   });

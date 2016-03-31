@@ -13,5 +13,10 @@ angular.module('ecomApp', ['ngRoute'])
         css: '/styles/css/main.css',
         controller: 'productCtrl'
     })
+    .when('/products/:product_id', {
+        templateUrl: '/app/views/productView.html',
+        css: '/styles/css/main.css',
+        controller: 'singleProductCtrl'
+    })
     .otherwise('/');
 });

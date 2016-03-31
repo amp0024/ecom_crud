@@ -7,5 +7,9 @@ angular.module('ecomApp')
           return $http.get(urlBase);
         };
 
+        productFactory.getProduct = function(product_id) {
+          return $http.get(urlBase + "/" + product_id);
+        };
+
         return productFactory;
   }]);

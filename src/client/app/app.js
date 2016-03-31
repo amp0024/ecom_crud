@@ -2,8 +2,8 @@
 
 /* The main app with route configurations */
 
-angular.module('ecomApp', ['ngRoute'])
-.config(function($routeProvider){
+angular.module('ecomApp', ['ngRoute', 'ngStorage', 'angular-loading-bar'])
+.config(function($routeProvider, $httpProvider){
     console.log('config working?');
     $routeProvider
 
@@ -18,5 +18,33 @@ angular.module('ecomApp', ['ngRoute'])
         css: '/styles/css/main.css',
         controller: 'singleProductCtrl'
     })
+    .when('/login', {
+      templateUrl: '/app/views/login.html',
+      controller: 'AuthCtrl'
+    })
+    .when('/register', {
+      templateUrl: '/app/views/register.html',
+      controller: 'AuthCtrl'
+    })
     .otherwise('/');
+
+    $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {
+   return {
+       'request': function (config) {
+            console.log($localStorage.token);
+
+           config.headers = config.headers || {};
+           if ($localStorage.token) {
+               config.headers['x-access-token'] = $localStorage.token;
+           }
+           return config;
+       },
+       'responseError': function (response) {
+           if (response.status === 401 || response.status === 403) {
+               $location.path('/login');
+           }
+           return $q.reject(response);
+       }
+   };
+  }]);
 });

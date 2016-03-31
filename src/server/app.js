@@ -10,6 +10,8 @@ var swig = require('swig');
 var session = require('express-session');
 var passport = require('./lib/auth');
 var flash = require('connect-flash');
+var routerProtect = express.Router();
+var jwt    = require('jsonwebtoken');
 
 
 // *** routes *** //
@@ -19,16 +21,36 @@ var manufacturers = require('./routes/manufacturers.js');
 var admins = require('./routes/admins.js');
 var products = require('./routes/products.js');
 var carts = require('./routes/shoppingCart.js')
+var authRoutes = require('./routes/auth_routes.js');
 
 // *** express instance *** //
 var app = express();
 
-
-// *** view engine *** //
-// var swig = new swig.Swig();
-// app.engine('html', swig.renderFile);
-// app.set('view engine', 'html');
-
+routerProtect.use(function(req, res, next) {
+  // check header or url parameters or post parameters for token
+  var token = req.body.token || req.query.token || req.headers['x-access-token'];
+  console.log("TOKEN: ", token);
+  // decode token
+  if (token) {
+    // verifies secret and checks exp
+    jwt.verify(token, 'superSecret', function(err, decoded) {
+      if (err) {
+        return res.json({ success: false, message: 'Failed to authenticate token.' });
+      } else {
+        // if everything is good, save to request for use in other routes
+        req.decoded = decoded;
+        next();
+      }
+    });
+  } else {
+    // if there is no token
+    // return an error
+    return res.status(403).send({
+        success: false,
+        message: 'No token provided.'
+    });
+  }
+});
 
 // *** static directory *** //
 app.set('views', path.join(__dirname, 'views'));
@@ -59,12 +81,13 @@ app.get('/', function(req, res, next) {
   console.log("index.html");
   res.sendFile(path.join(__dirname, '../client/app/views', 'index.html'));
 });
-app.use('/', routes);
+app.use('/api/safe/', routerProtect);
+app.use('/auth', authRoutes);
 app.use('/api/products', products);
 app.use('/api/manufacturers', manufacturers);
-app.use('/api/admins', admins);
-app.use('/api/customers', customers);
-app.use('/api/carts', carts);
+app.use('/api/safe/admins', admins);
+app.use('/api/safe/customers', customers);
+app.use('/api/safe/carts', carts);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

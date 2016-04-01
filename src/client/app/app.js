@@ -4,7 +4,6 @@
 
 angular.module('ecomApp', ['ngRoute', 'ngStorage', 'angular-loading-bar'])
 .config(function($routeProvider, $httpProvider){
-    console.log('config working?');
     $routeProvider
 
     /* LANDING PAGE */
@@ -33,7 +32,6 @@ angular.module('ecomApp', ['ngRoute', 'ngStorage', 'angular-loading-bar'])
        'request': function (config) {
            config.headers = config.headers || {};
            if ($localStorage.token) {
-                console.log($localStorage.token);
                config.headers['x-access-token'] = $localStorage.token;
            }
            return config;

@@ -16,9 +16,6 @@ router.get('/:product_id', function(req, res, next){
   })
 })
 
-
-
-
 router.post('/', function(req, res, next){
   query.createProduct(req.body).then(function(data){
     res.json(data[0]);
@@ -35,7 +32,7 @@ router.delete('/:product_id', function(req, res, next){
 module.exports = router;
 
 
-function filterManufacture(products, name){
+function filterManufacturer(products, name){
   return products.filter(function(el){
     return (el.name).toLowerCase() === name
   });

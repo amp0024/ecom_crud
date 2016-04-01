@@ -14,4 +14,11 @@ router.post('/:cart_id/:product_id', function(req, res, next){
   });
 });
 
+router.post('/', function(req, res, next){
+  query.createCart(req.body.token).then(function(data){
+    console.log(data);
+    res.json({'token': data[0]});
+  });
+});
+
 module.exports = router;

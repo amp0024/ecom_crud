@@ -31,12 +31,24 @@ angular.module('ecomApp')
 
        return {
            signup: function (data, success, error) {
-                console.log('Signup!!!');
-               $http.post('/auth/register', data).success(success).error(error)
+               $http.post('/auth/register', data).success(success).error(error);
            },
            signin: function (data, success, error) {
-                console.log('Signin!!!');
-               $http.post('/auth/login', data).success(success).error(error)
+                // $localStorage.token = data.data.token;
+                $http.post('/auth/login', data).then(function(data){
+                  var req = {
+                       method: 'POST',
+                       url: '/api/safe/carts',
+                       // headers: {
+                       //   'x-access-token': data.data.token
+                       // },
+                       data: { token: data.data.token }
+                      };
+                      var pass = { token: data.data.token };
+                  $http(req).success(success).error(error);
+                });
+
+
            },
            logout: function (success) {
                tokenClaims = {};

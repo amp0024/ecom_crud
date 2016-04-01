@@ -12,10 +12,11 @@ module.exports = {
   getCart: function(id){
     return ShoppingCart().select(id);
   },
-  createCart: function(customer_id){
-    return ShoppingCart().insert({customer_id: customer_id, is_active: true});
+  createCart: function(session_id){
+    console.log(session_id, "Creating cart!!!!");
+    return ShoppingCart().insert({session_id: session_id}, 'session_id');
   },
   addToCart: function(product){
-    return CartProduct().insert({product_id: product.product_id, cart_id: product.cart_id, quantity: 1});
+    return CartProduct().insert({'product_id': product.product_id, 'cart_id': product.cart_id});
   }
 };

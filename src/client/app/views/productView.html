@@ -14,7 +14,7 @@
                             <h1>{{product.name}}</h1>
                         </div>
                         <div class="panel-body text-center">
-                            <img src="{{ product.logo_url }}" class="img-responsive">
+                            <img ng-src="{{ product.logo_url }}" class="img-responsive">
                             <h1>logo here</h1>
 
                         </div>
@@ -26,13 +26,15 @@
 
                         </ul>
                         <div class="panel-footer">
-                            <a class="btn btn-lg btn-block btn-success purchaseProduct" id="{{product.id}}" href="#">BUY NOW!</a>
+                        <form ng-submit="addToCart()">
+                            <input type="submit" class="btn btn-lg btn-block btn-success purchaseProduct" >BUY NOW!</input>
+                        </form>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-4 col-md-offset-1 text-center">
-                    <img src="{{product.img_url}}" class="img-responsive">
+                    <img ng-src="{{product.img_url}}" class="img-responsive">
                 </div>
               </div>
             </div>

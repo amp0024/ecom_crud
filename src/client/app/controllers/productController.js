@@ -12,7 +12,7 @@ angular.module('ecomApp')
       }
     getProducts();
   }])
-  .controller('singleProductCtrl', ['$scope', '$http', '$routeParams', 'productFactory', function($scope, $http, $routeParams, productFactory){
+  .controller('singleProductCtrl', ['$scope', '$http', '$routeParams', 'productFactory', '$localStorage', function($scope, $http, $routeParams, productFactory, $localStorage){
 
     var product_id = $routeParams.product_id;
     function getProduct(product_id){
@@ -25,4 +25,17 @@ angular.module('ecomApp')
         });
       }
     getProduct(product_id);
+
+    $scope.addToCart = function(){
+      var token = $localStorage.token;
+      var product_id = $routeParams.product_id;
+            console.log(token, product_id);
+
+      productFactory.addToCart(product_id, token)
+        .success(function(data){
+          window.location ='/';
+        }).error(function(error){
+          $scope.status = error.message;
+        });
+    };
   }]);

@@ -5,6 +5,8 @@ var knex = require('../db/knex');
 var bcrypt = require('bcrypt');
 var jwt    = require('jsonwebtoken');
 
+var cart = require('../db/shopping_cart_queries.js');
+
 function ensureAuthenticated(req, res, next) {
   // check if user is authenticated
   if(req.user) {
@@ -102,10 +104,8 @@ router.post('/login', function(req, res, next) {
         if (comparePassword(password, user.password)) {
           // passwords match! return user
           var token = jwt.sign(user, 'superSecret', {
-            expiresInMinutes: 1440 // expires in 24 hours
+            expiresIn: 6000 // expires in 24 hours
           });
-          // var token = "token token";
-
           res.json({
             success: true,
             message: 'Enjoy your token!',

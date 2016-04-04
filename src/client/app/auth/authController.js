@@ -1,13 +1,15 @@
-angular.module('ecomApp')
+ angular.module('ecomApp')
   .controller('AuthCtrl', ['$rootScope', '$scope', '$location', '$localStorage', 'Auth',
        function ($rootScope, $scope, $location, $localStorage, Auth) {
            function successAuth(res) {
+                console.log(res.token, "lajsdfkjsd");
+                alert("ljasdfklj")
                $localStorage.token = res.token;
+               console.log($localStorage.token);
                window.location = "/";
            }
 
            $scope.signin = function () {
-              console.log("signin running!!!")
                var formData = {
                    username: $scope.username,
                    password: $scope.password

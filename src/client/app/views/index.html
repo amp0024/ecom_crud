@@ -31,11 +31,17 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">Beer List</a></li>
             <li><a href="#">Brewers</a></li>
-            <li><button type="button" class="btn btn-success navbar-btn btn-circle"><a href="/#/login">Sign in</a></button></li>
+            <li data-ng-hide="token"><button type="button" class="btn btn-success navbar-btn btn-circle"><a href="/#/login">Sign in</a></button></li>
+            <li data-ng-show="token"><button type="button" class="btn btn-success navbar-btn btn-circle" ng-click="toggleCart()">Shopping Cart {{cart.length}}</button></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
+    <div class="cart" ng-show="showCart" ng-controller="productCtrl">
+      <div ng-repeat="(key, value) in cart.items">
+        {{value}} x {{products[key-1].name}} = {{products[key-1].price * value | currency}}
+      </div>
+    </div>
     <ng-view></ng-view>
 
   <footer class="footer text-center">

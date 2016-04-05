@@ -33,14 +33,16 @@
             <li><a href="#">Brewers</a></li>
             <li data-ng-hide="token"><button type="button" class="btn btn-success navbar-btn btn-circle"><a href="/#/login">Sign in</a></button></li>
             <li data-ng-show="token"><button type="button" class="btn btn-success navbar-btn btn-circle" ng-click="toggleCart()">Shopping Cart {{cart.length}}</button></li>
+            <li data-ng-show="token"><button type="button" class="btn btn-success navbar-btn btn-circle" ng-controller="AuthCtrl" ng-click="logout()">Logout</button></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-    <div class="cart" ng-show="showCart" ng-controller="productCtrl">
+    <div class="cart text-center" ng-show="showCart" ng-controller="productCtrl">
       <div ng-repeat="(key, value) in cart.items">
         {{value}} x {{products[key-1].name}} = {{products[key-1].price * value | currency}}
       </div>
+      <a type="button" class="btn btn-success navbar-btn btn-circle" href="/#/checkout">Checkout</a>
     </div>
     <ng-view></ng-view>
 
@@ -65,6 +67,8 @@
     <script src="./app/auth/authController.js"></script>
     <script src="./app/auth/authFactory.js"></script>
     <script src="./app/controllers/omniController.js"></script>
+    <script src="./app/controllers/cartController.js"></script>
+    <script src="./app/factories/cartFactory.js"></script>
 
 
   </body>

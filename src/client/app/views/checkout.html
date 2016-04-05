@@ -10,8 +10,9 @@
       <div class="container">
         <div class="panel panel-default">
           <div class="panel-body">
-          <div id="checkoutProducts">
-
+          <div id="checkoutProducts" ng-repeat="item in checkout">
+            <p>{{item.name}} {{item.volume}} x {{item.count}}</p>
+            <p>{{item.price * item.count}}</p>
           </div>
             <hr>
             <div class="row">

@@ -9,7 +9,6 @@ angular.module('ecomApp')
       console.log("Tokeeeen!", token)
       productFactory.getCartProducts(token)
         .success(function(data){
-          console.log(data);
           var cart = {id: data[0].cart_id, items: {}};
           data.forEach(function(item){
             if (!cart.items[item.product_id]){
@@ -18,7 +17,6 @@ angular.module('ecomApp')
               cart.items[item.product_id] += 1;
             }
           });
-          console.log("CART!!! ", cart);
           $scope.cart = cart;
         }).error(function(error){
           $scope.status = error.message;

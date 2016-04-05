@@ -16,13 +16,19 @@ router.post('/', function(req, res, next){
 });
 
 router.get('/cart', function(req, res, next){
-  console.log("runrinoweroinsdoif");
-  console.log(req.headers['x-access-token']);
   var cart = req.headers['x-access-token'];
-  console.log(cart);
   query.getCartProducts(cart).then(function(data){
-    console.log("lakjsdflkajsdflkjasdf");
-    console.log(data);
+    res.json(data);
+  }, function(err){
+    res.json(err);
+  });
+});
+
+router.get('/checkout', function(req, res, next){
+  var cart = req.headers['x-access-token'];
+  query.getCheckout(cart).then(function(data){
+    console.log("Checkout data ", data);
+
     res.json(data);
   }, function(err){
     res.json(err);

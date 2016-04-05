@@ -8,6 +8,7 @@ function CartProduct() {
   return knex('cart_products');
 }
 
+
 module.exports = {
   createCart: function(session_id){
     console.log(session_id, "Creating cart!!!!");
@@ -19,5 +20,13 @@ module.exports = {
   getCartProducts: function(cart_id){
     console.log(cart_id);
     return CartProduct().where('cart_id', cart_id);
+  },
+  getCheckout: function(cart_id){
+    return knex('cart_products')
+            .innerJoin('products', 'products.id', 'cart_products.product_id')
+            .where({'cart_products.cart_id': cart_id})
+            .select('products.name', 'products.img_url', 'products.price', 'products.type', 'products.volume')
+            .groupBy('products.id')
+            .count('products.id');
   }
 };

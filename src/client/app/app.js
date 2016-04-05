@@ -25,6 +25,10 @@ angular.module('ecomApp', ['ngRoute', 'ngStorage', 'angular-loading-bar'])
       templateUrl: '/app/views/register.html',
       controller: 'AuthCtrl'
     })
+    .when('/checkout', {
+      templateUrl: '/app/views/checkout.html',
+      controller: 'CartCtrl'
+    })
     .otherwise('/');
 
     $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {

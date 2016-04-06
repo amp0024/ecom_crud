@@ -25,17 +25,6 @@
                });
            };
 
-           $scope.adminsignin = function(){
-              var formData = {
-                   username: $scope.username,
-                   password: $scope.password
-               };
-
-               Auth.signin(formData, successAuth, function () {
-                   $rootScope.error = 'Invalid credentials.';
-               });
-           };
-
            $scope.signup = function () {
                var formData = {
                    username: $scope.username,

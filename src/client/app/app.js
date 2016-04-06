@@ -33,6 +33,10 @@ angular.module('ecomApp', ['ngRoute', 'ngStorage', 'angular-loading-bar'])
       templateUrl: '/app/views/adminlogin.html',
       controller: 'AuthCtrl'
     })
+    .when('/admin/register', {
+      templateUrl: '/app/views/adminregister.html',
+      controller: 'MfcCtrl'
+    })
     .when('/admin', {
       templateUrl: '/app/views/admindashboard.html'
     })

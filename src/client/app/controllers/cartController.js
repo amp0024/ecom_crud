@@ -4,7 +4,6 @@ angular.module('ecomApp')
       var cart = $localStorage.cart;
       cartFactory.getCheckout(cart)
       .success(function(data) {
-          console.log(data);
           $scope.checkout = data;
         }).error(function(error) {
           $scope.status = 'Unable to load book data: ' + error.message;

@@ -30,15 +30,6 @@ function loginRedirect(req, res, next) {
 function hashing (password) {
   var salt = bcrypt.genSaltSync(10);
   return bcrypt.hashSync(password, salt);
-  // Needs promises otherwise it will not wait to return the newPassword which
-  // will make it undefined
-  // var newPassword = '';
-  // bcrypt.genSalt(10, function(err, salt) {
-  //   bcrypt.hash(password, salt, function(err, hash) {
-  //       newPassword = hash;
-  //   });
-  // });
-  // return newPassword;
 }
 function comparePassword(password, hashedpassword) {
     return bcrypt.compareSync(password, hashedpassword);

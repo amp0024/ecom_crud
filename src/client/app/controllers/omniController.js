@@ -9,7 +9,6 @@ angular.module('ecomApp')
       var cart = $localStorage.cart;
       productFactory.getCartProducts(cart)
         .success(function(data){
-          console.log(data);
           var cart = {id: cart, items: {}};
           data.forEach(function(item){
             if (!cart.items[item.product_id]){

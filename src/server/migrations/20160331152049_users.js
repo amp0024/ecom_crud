@@ -5,6 +5,7 @@ exports.up = function(knex, Promise) {
     table.string('username');
     table.string('password');
     table.boolean('is_admin');
+    table.string('site_id');
   });
 };
 

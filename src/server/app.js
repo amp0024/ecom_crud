@@ -11,6 +11,7 @@ var session = require('express-session');
 var passport = require('./lib/auth');
 var flash = require('connect-flash');
 var routerProtect = express.Router();
+var adminProtect = express.Router();
 var jwt    = require('jsonwebtoken');
 
 
@@ -31,14 +32,48 @@ routerProtect.use(function(req, res, next) {
   var token = req.body.token || req.query.token || req.headers['x-access-token'];
   // decode token
   if (token) {
+    console.log("token!!!! ", token);
     // verifies secret and checks exp
     jwt.verify(token, 'superSecret', function(err, decoded) {
       if (err) {
         return res.json({ success: false, message: 'Failed to authenticate token.' });
       } else {
         // if everything is good, save to request for use in other routes
+        console.log("DECODE! ", decoded);
         req.decoded = decoded;
+
         next();
+      }
+    });
+  } else {
+    // if there is no token
+    // return an error
+    return res.status(403).send({
+        success: false,
+        message: 'No token provided.'
+    });
+  }
+});
+
+adminProtect.use(function(req, res, next) {
+  // check header or url parameters or post parameters for token
+  var token = req.body.token || req.query.token || req.headers['x-access-token'];
+  // decode token
+  if (token) {
+    console.log("token!!!! ", token);
+    // verifies secret and checks exp
+    jwt.verify(token, 'superSecret', function(err, decoded) {
+      if (err) {
+        return res.json({ success: false, message: 'Failed to authenticate token.' });
+      } else {
+        if (decoded.is_admin === true){
+          console.log("DECODE! ", decoded);
+          req.decoded = decoded;
+
+          next();
+        } else {
+          return res.json({success: false, message: 'Not Authorized'});
+        }
       }
     });
   } else {
@@ -81,10 +116,11 @@ app.get('/', function(req, res, next) {
   res.sendFile(path.join(__dirname, '../client/app/views', 'index.html'));
 });
 app.use('/api/safe/', routerProtect);
+app.use('/api/admin/', adminProtect);
 app.use('/auth', authRoutes);
 app.use('/api/products', products);
 app.use('/api/manufacturers', manufacturers);
-app.use('/api/safe/admins', admins);
+app.use('/api/admin/admins', admins);
 app.use('/api/safe/customers', customers);
 app.use('/api/safe/carts', carts);
 

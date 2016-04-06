@@ -29,6 +29,10 @@ angular.module('ecomApp', ['ngRoute', 'ngStorage', 'angular-loading-bar'])
       templateUrl: '/app/views/checkout.html',
       controller: 'CartCtrl'
     })
+    .when('/admin/login', {
+      templateUrl: '/app/views/adminlogin.html',
+      controller: 'AuthCtrl'
+    })
     .otherwise('/');
 
     $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {

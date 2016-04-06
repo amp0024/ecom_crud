@@ -9,7 +9,7 @@ angular.module('ecomApp')
           return $http.get(urlBase + "/" + product_id);
         };
         cartFactory.getCheckout = function(cart_id){
-          return $http.get(urlBase + "/checkout");
+          return $http.get(urlBase + "/checkout/"+cart_id);
         };
         return cartFactory;
   }]);

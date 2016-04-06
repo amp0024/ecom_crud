@@ -10,9 +10,9 @@ function CartProduct() {
 
 
 module.exports = {
-  createCart: function(session_id){
-    console.log(session_id, "Creating cart!!!!");
-    return ShoppingCart().insert({session_id: session_id}, 'session_id');
+  createCart: function(user_id){
+    console.log(user_id, "Creating cart!!!!");
+    return ShoppingCart().insert({user_id: user_id, is_active: true, created_date: knex.fn.now()}, 'id');
   },
   addToCart: function(product){
     return CartProduct().insert({'product_id': product.product_id, 'cart_id': product.cart_id});

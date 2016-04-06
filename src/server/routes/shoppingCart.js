@@ -9,14 +9,14 @@ router.post('/:cart_id/:product_id', function(req, res, next){
 });
 
 router.post('/', function(req, res, next){
-  query.createCart(req.body.token).then(function(data){
+  query.createCart(req.body.user).then(function(data){
     console.log(data);
-    res.json({'token': data[0]});
+    res.json({'cart': data[0]});
   });
 });
 
-router.get('/cart', function(req, res, next){
-  var cart = req.headers['x-access-token'];
+router.get('/cart/:cart_id', function(req, res, next){
+  var cart = req.params.cart_id;
   query.getCartProducts(cart).then(function(data){
     res.json(data);
   }, function(err){
@@ -24,8 +24,8 @@ router.get('/cart', function(req, res, next){
   });
 });
 
-router.get('/checkout', function(req, res, next){
-  var cart = req.headers['x-access-token'];
+router.get('/checkout/:cart_id', function(req, res, next){
+  var cart = req.params.cart_id;
   query.getCheckout(cart).then(function(data){
     console.log("Checkout data ", data);
 

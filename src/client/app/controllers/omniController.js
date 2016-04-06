@@ -6,10 +6,11 @@ angular.module('ecomApp')
 
     function getCartProducts(){
       var token = $localStorage.token;
-      console.log("Tokeeeen!", token)
-      productFactory.getCartProducts(token)
+      var cart = $localStorage.cart;
+      productFactory.getCartProducts(cart)
         .success(function(data){
-          var cart = {id: data[0].cart_id, items: {}};
+          console.log(data);
+          var cart = {id: cart, items: {}};
           data.forEach(function(item){
             if (!cart.items[item.product_id]){
               cart.items[item.product_id] = 1;

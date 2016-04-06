@@ -104,13 +104,18 @@ router.post('/login', function(req, res, next) {
         if (comparePassword(password, user.password)) {
           // passwords match! return user
           var token = jwt.sign(user, 'superSecret', {
-            expiresIn: 6000 // expires in 24 hours
+            expiresIn: 6000
           });
-          res.json({
-            success: true,
-            message: 'Enjoy your token!',
-            token: token
+          cart.createCart(user.id).then(function(cartData){
+            res.json({
+              success: true,
+              cart: cartData,
+              user: user.id,
+              message: 'Enjoy your token!',
+              token: token
+            });
           });
+
           // return done(null, user);
         } else {
           // passwords don't match! return error

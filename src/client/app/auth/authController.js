@@ -2,9 +2,10 @@
   .controller('AuthCtrl', ['$rootScope', '$scope', '$location', '$localStorage', 'Auth',
        function ($rootScope, $scope, $location, $localStorage, Auth) {
            function successAuth(res) {
-                console.log(res.token, "lajsdfkjsd");
+                console.log(res, "lajsdfkjsd");
                 alert("ljasdfklj")
                $localStorage.token = res.token;
+               $localStorage.cart = res.cart[0];
                console.log($localStorage.token);
                window.location = "/";
            }

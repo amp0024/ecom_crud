@@ -19,7 +19,7 @@ angular.module('ecomApp')
         productFactory.getCartProducts = function(cart){
           console.log("Cart!!!", cart);
           console.log(cartBase+"cart");
-          return $http.get(cartBase+"cart");
+          return $http.get(cartBase+"cart/"+cart);
         };
 
         return productFactory;

@@ -40,6 +40,10 @@ angular.module('ecomApp', ['ngRoute', 'ngStorage', 'angular-loading-bar'])
     .when('/admin', {
       templateUrl: '/app/views/admindashboard.html'
     })
+    .when('/products', {
+      templateUrl: '/app/views/products.html',
+      controller: 'productCtrl'
+    })
     .otherwise('/');
 
     $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {

@@ -2,9 +2,16 @@
   .controller('AuthCtrl', ['$rootScope', '$scope', '$location', '$localStorage', 'Auth',
        function ($rootScope, $scope, $location, $localStorage, Auth) {
            function successAuth(res) {
+
+              console.log("Auth Ctrl Res" , res);
+              alert("Pause");
                $localStorage.token = res.token;
                $localStorage.cart = res.cart[0];
-               window.location = "/";
+               if ( res.admin === true ){
+                 window.location = "/#/admin";
+               } else {
+                 window.location = "/";
+               }
            }
 
            $scope.signin = function () {

@@ -112,7 +112,22 @@ app.use(express.static(path.join(__dirname, '../client')));
 
 // *** main routes *** //
 app.get('/', function(req, res, next) {
-  console.log("index.html");
+  var token = req.body.token || req.query.token || req.headers['x-access-token'];
+  // decode token
+  if (token) {
+    // verifies secret and checks exp
+    jwt.verify(token, 'superSecret', function(err, decoded) {
+      if (err) {
+        res.json({ success: false, message: 'Failed to authenticate token.' });
+      } else {
+        if (decoded.is_admin === true){
+          res.sendFile(path.join(__dirname, '../client/app/views', 'adminlayout.html'));
+        } else {
+          res.sendFile(path.join(__dirname, '../client/app/views', 'index.html'));
+        }
+      }
+    });
+  }
   res.sendFile(path.join(__dirname, '../client/app/views', 'index.html'));
 });
 app.use('/api/safe/', routerProtect);

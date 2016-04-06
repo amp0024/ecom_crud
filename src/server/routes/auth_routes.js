@@ -20,6 +20,7 @@ function ensureAuthenticated(req, res, next) {
 function loginRedirect(req, res, next) {
   // check if user is authenticated
   if(req.user) {
+    console.log("Login redirect is being called");
     // if so -> redirect to main route
     return res.redirect('/');
   } else {
@@ -91,6 +92,7 @@ router.post('/login', function(req, res, next) {
           return done('Incorrect username.');
         }
         var user = data[0];
+        console.log(user);
         // username found but do the passwords match?
         if (comparePassword(password, user.password)) {
           // passwords match! return user
@@ -102,7 +104,7 @@ router.post('/login', function(req, res, next) {
               success: true,
               cart: cartData,
               user: user.id,
-              message: 'Enjoy your token!',
+              admin: user.is_admin,
               token: token
             });
           });

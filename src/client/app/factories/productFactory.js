@@ -12,6 +12,10 @@ angular.module('ecomApp')
           return $http.get(urlBase + "/" + product_id);
         };
 
+        productFactory.addProduct = function(product){
+          return $http.post(urlBase, product);
+        };
+
         productFactory.addToCart = function(product_id, cart){
           return $http.post(cartBase+"/"+cart+"/"+product_id);
         };

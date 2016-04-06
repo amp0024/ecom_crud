@@ -38,7 +38,8 @@ angular.module('ecomApp', ['ngRoute', 'ngStorage', 'angular-loading-bar'])
       controller: 'MfcCtrl'
     })
     .when('/admin', {
-      templateUrl: '/app/views/admindashboard.html'
+      templateUrl: '/app/views/admindashboard.html',
+      controller: 'productCtrl'
     })
     .when('/products', {
       templateUrl: '/app/views/products.html',

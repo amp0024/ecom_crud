@@ -8,7 +8,7 @@ exports.up = function(knex, Promise) {
     table.string('volume');
     table.string('img_url');
     table.integer('mfc_id');
-  })
+  });
 };
 
 exports.down = function(knex, Promise) {

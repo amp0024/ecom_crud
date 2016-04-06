@@ -1,5 +1,5 @@
-angular.module('ecomApp')
-  .controller('productCtrl', ['$scope', '$http', '$routeParams', 'productFactory', function($scope, $http, $routeParams, productFactory){
+ angular.module('ecomApp')
+  .controller('productCtrl', ['$scope', '$http', '$routeParams', 'productFactory', '$localStorage', function($scope, $http, $routeParams, productFactory, $localStorage){
 
     function getProducts(){
       productFactory.getProducts()
@@ -11,6 +11,19 @@ angular.module('ecomApp')
         });
       }
     getProducts();
+
+    $scope.createProduct = function(){
+      console.log($localStorage.site_id);
+      var product = $scope.product;
+      product.mfc_id = $localStorage.site_id;
+      console.log(product);
+      productFactory.addProduct(product)
+        .success(function(data){
+          window.location ='/#/admin';
+        }).error(function(error){
+          $scope.status = error.message;
+        });
+    };
   }])
   .controller('singleProductCtrl', ['$scope', '$http', '$routeParams', 'productFactory', '$localStorage', function($scope, $http, $routeParams, productFactory, $localStorage){
 

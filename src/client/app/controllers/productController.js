@@ -27,11 +27,11 @@ angular.module('ecomApp')
     getProduct(product_id);
 
     $scope.addToCart = function(){
-      var token = $localStorage.token;
+      var cart = $localStorage.cart;
       var product_id = $routeParams.product_id;
-            console.log(token, product_id);
+            console.log(cart, product_id);
 
-      productFactory.addToCart(product_id, token)
+      productFactory.addToCart(product_id, cart)
         .success(function(data){
           window.location ='/';
         }).error(function(error){

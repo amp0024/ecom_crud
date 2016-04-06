@@ -20,6 +20,7 @@ function ensureAuthenticated(req, res, next) {
 function loginRedirect(req, res, next) {
   // check if user is authenticated
   if(req.user) {
+    console.log("Login redirect is being called");
     // if so -> redirect to main route
     return res.redirect('/');
   } else {
@@ -30,15 +31,6 @@ function loginRedirect(req, res, next) {
 function hashing (password) {
   var salt = bcrypt.genSaltSync(10);
   return bcrypt.hashSync(password, salt);
-  // Needs promises otherwise it will not wait to return the newPassword which
-  // will make it undefined
-  // var newPassword = '';
-  // bcrypt.genSalt(10, function(err, salt) {
-  //   bcrypt.hash(password, salt, function(err, hash) {
-  //       newPassword = hash;
-  //   });
-  // });
-  // return newPassword;
 }
 function comparePassword(password, hashedpassword) {
     return bcrypt.compareSync(password, hashedpassword);
@@ -100,17 +92,23 @@ router.post('/login', function(req, res, next) {
           return done('Incorrect username.');
         }
         var user = data[0];
+        console.log(user);
         // username found but do the passwords match?
         if (comparePassword(password, user.password)) {
           // passwords match! return user
           var token = jwt.sign(user, 'superSecret', {
-            expiresIn: 6000 // expires in 24 hours
+            expiresIn: 6000
           });
-          res.json({
-            success: true,
-            message: 'Enjoy your token!',
-            token: token
+          cart.createCart(user.id).then(function(cartData){
+            res.json({
+              success: true,
+              cart: cartData,
+              user: user.id,
+              admin: user.is_admin,
+              token: token
+            });
           });
+
           // return done(null, user);
         } else {
           // passwords don't match! return error

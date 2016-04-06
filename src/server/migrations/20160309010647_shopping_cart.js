@@ -2,7 +2,9 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('shopping_cart', function(table){
     table.increments();
-    table.text('session_id');
+    table.integer('user_id');
+    table.boolean('is_active');
+    table.date('created_date');
   });
 };
 

@@ -2,11 +2,16 @@
   .controller('AuthCtrl', ['$rootScope', '$scope', '$location', '$localStorage', 'Auth',
        function ($rootScope, $scope, $location, $localStorage, Auth) {
            function successAuth(res) {
-                console.log(res.token, "lajsdfkjsd");
-                alert("ljasdfklj")
+
+              console.log("Auth Ctrl Res" , res);
+              alert("Pause");
                $localStorage.token = res.token;
-               console.log($localStorage.token);
-               window.location = "/";
+               $localStorage.cart = res.cart[0];
+               if ( res.admin === true ){
+                 window.location = "/#/admin";
+               } else {
+                 window.location = "/";
+               }
            }
 
            $scope.signin = function () {
@@ -17,7 +22,7 @@
 
                Auth.signin(formData, successAuth, function () {
                    $rootScope.error = 'Invalid credentials.';
-               })
+               });
            };
 
            $scope.signup = function () {

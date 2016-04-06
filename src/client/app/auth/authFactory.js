@@ -35,18 +35,21 @@ angular.module('ecomApp')
            },
            signin: function (data, success, error) {
                 // $localStorage.token = data.data.token;
-                $http.post('/auth/login', data).then(function(data){
-                  var req = {
-                       method: 'POST',
-                       url: '/api/safe/carts',
-                       // headers: {
-                       //   'x-access-token': data.data.token
-                       // },
-                       data: { token: data.data.token }
-                      };
-                      var pass = { token: data.data.token };
-                  $http(req).success(success).error(error);
-                });
+                $http.post('/auth/login', data).success(success).error(error);
+                // .then(function(data){
+                //   console.log("Daaaata!", data);
+                //   var req = {
+                //        method: 'POST',
+                //        url: '/api/safe/carts',
+                //        // headers: {
+                //        //   'x-access-token': data.data.token
+                //        // },
+                //        data: { token: data.data.token,
+                //                user:  data.data.user }
+                //       };
+                //       var pass = { token: data.data.token };
+                //   $http(req)
+                // });
 
 
            },

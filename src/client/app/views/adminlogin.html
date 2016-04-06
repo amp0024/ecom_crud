@@ -1,0 +1,14 @@
+<div class="nine columns">
+  <h1> Admin Login</h1>
+  <form ng-submit="signin()">
+    <h5>Username</h5>
+    <input type="text" ng-model="username"><br>
+    <h5>Password</h5>
+    <input type="password" ng-model="password"><br>
+    <input type="submit">
+  </form>
+  <ul>
+     <li data-ng-hide="token"><a ng-href="/#/admin/register">Create New Store</a></li>
+     <li data-ng-show="token"><a ng-click="logout()">Logout</a></li>
+  </ul>
+</div>

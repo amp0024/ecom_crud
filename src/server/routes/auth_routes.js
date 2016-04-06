@@ -105,6 +105,7 @@ router.post('/login', function(req, res, next) {
               cart: cartData,
               user: user.id,
               admin: user.is_admin,
+              site_id: user.site_id,
               token: token
             });
           });

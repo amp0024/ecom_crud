@@ -7,6 +7,7 @@
               alert("Pause");
                $localStorage.token = res.token;
                $localStorage.cart = res.cart[0];
+               $localStorage.site_id = res.site_id;
                if ( res.admin === true ){
                  window.location = "/#/admin";
                } else {

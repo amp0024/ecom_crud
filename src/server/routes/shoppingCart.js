@@ -10,7 +10,6 @@ router.post('/:cart_id/:product_id', function(req, res, next){
 
 router.post('/', function(req, res, next){
   query.createCart(req.body.user).then(function(data){
-    console.log(data);
     res.json({'cart': data[0]});
   });
 });
@@ -27,8 +26,6 @@ router.get('/cart/:cart_id', function(req, res, next){
 router.get('/checkout/:cart_id', function(req, res, next){
   var cart = req.params.cart_id;
   query.getCheckout(cart).then(function(data){
-    console.log("Checkout data ", data);
-
     res.json(data);
   }, function(err){
     res.json(err);

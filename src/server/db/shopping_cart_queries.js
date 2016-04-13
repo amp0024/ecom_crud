@@ -11,7 +11,6 @@ function CartProduct() {
 
 module.exports = {
   createCart: function(user_id){
-    console.log(user_id, "Creating cart!!!!");
     return ShoppingCart().insert({user_id: user_id, is_active: true, created_date: knex.fn.now()}, 'id');
   },
   addToCart: function(product){
@@ -24,6 +23,7 @@ module.exports = {
   getCheckout: function(cart_id){
     return knex('cart_products')
             .innerJoin('products', 'products.id', 'cart_products.product_id')
+            .innerJoin('shopping_cart', 'shopping_cart.id', 'cart_products.cart_id')
             .where({'cart_products.cart_id': cart_id})
             .select('products.name', 'products.img_url', 'products.price', 'products.type', 'products.volume')
             .groupBy('products.id')

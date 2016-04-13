@@ -1,26 +1,25 @@
 var express = require('express');
 var router = express.Router();
 
-var stripeApiKey = "...";
-var stripeApiKeyTesting = "..."
-var stripe = require('stripe')(stripeApiKey);
+var stripe = require('stripe')("sk_test_M68Y8QkeAR5Q7wHo6GITOKqZ");
 
 
-router.post("/api/charge", function(req, res) {
-  stripe.customers.create({
-    card : req.body.stripeToken,
-    email : "...", // customer's email (get it from db or session)
-    plan : "browserling_developer"
-  }, function (err, customer) {
-    if (err) {
-      var msg = customer.error.message || "unknown";
-      res.send("Error while processing your payment: " + msg;
+router.post("/", function(req, res) {
+  console.log("CHARGING!");
+  var token = req.body.token;
+
+  var charge = stripe.charges.create({
+    amount: parseInt(parseFloat(req.body.amount * 100), 10),
+    source: token,
+    currency: "usd",
+    description: 'TEST'
+  }, function(err, charge) {
+    if(err) {
+      return res.json({ message: err })
     }
-    else {
-      var id = customer.id;
-      console.log('Success! Customer with Stripe ID ' + id + ' just signed up!');
-      // save this customer to your database here!
-      res.send('ok');
-    }
+    res.status(200).json({ message: "Payment successful" });
   });
-}
+});
+
+
+module.exports = router;

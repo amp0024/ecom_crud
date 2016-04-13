@@ -6,6 +6,8 @@ PaymentController.$inject = ['$http'];
 function PaymentController($http) {
   var self = this;
 
+  var cart = $localStorage.cart;
+  console.log(cart);
   self.card = {};
   self.payee = null;
   self.amount = null;

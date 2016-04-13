@@ -10,5 +10,13 @@ module.exports = {
   },
   getPurchase: function(id){
     return Purchases().where('id', id);
+  },
+  createPurchase: function(purchase){
+    return Purchases().insert({
+      'product_id': purchase.product_id,
+      'customer_id': purchase.customer_id,
+      'purchase_time': new Date(),
+      'quantity': purchase.quantity
+    });
   }
 }

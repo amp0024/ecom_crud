@@ -3,6 +3,8 @@ var router = express.Router();
 
 var stripe = require('stripe')("sk_test_M68Y8QkeAR5Q7wHo6GITOKqZ");
 
+var query = require('../db/purchases_queries.js');
+
 
 router.post("/", function(req, res) {
   console.log("CHARGING!");

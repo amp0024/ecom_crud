@@ -20,7 +20,6 @@ function ensureAuthenticated(req, res, next) {
 function loginRedirect(req, res, next) {
   // check if user is authenticated
   if(req.user) {
-    console.log("Login redirect is being called");
     // if so -> redirect to main route
     return res.redirect('/');
   } else {
@@ -37,7 +36,6 @@ function comparePassword(password, hashedpassword) {
 }
 // Create username and Password Account
 router.post('/register', function(req, res, next) {
-  console.log(req.body);
   var username = req.body.username;
   var password = req.body.password;
   // check if username is unique
@@ -45,16 +43,11 @@ router.post('/register', function(req, res, next) {
     .then(function(data){
       // if username is in the database send an error
       if(data.length) {
-          console.log('message', {
-            status: 'danger',
-            message: 'username already exists.!'
-          });
           return res.redirect('/register');
       } else {
         // hash and salt the password
         var hashedPassword = hashing(password);
         // if username is not in the database insert it
-        console.log("username: ", username, "hashed ", hashedPassword);
         knex('users').insert({
           username: username,
           password: hashedPassword
@@ -72,7 +65,6 @@ router.post('/register', function(req, res, next) {
           });
         })
         .catch(function(err) {
-          console.log(err);
           return res.send("wrong!");
         });
       }
@@ -92,7 +84,6 @@ router.post('/login', function(req, res, next) {
           return done('Incorrect username.');
         }
         var user = data[0];
-        console.log(user);
         // username found but do the passwords match?
         if (comparePassword(password, user.password)) {
           // passwords match! return user

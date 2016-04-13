@@ -3,12 +3,10 @@
 
 /* The main app with route configurations */
 
-angular.module('ecomApp', ['ngRoute', 'ngStorage', 'angular-loading-bar', 'credit-cards', 'angular-stripe'])
+angular.module('ecomApp', ['ngRoute', 'ngStorage', 'angular-loading-bar'])
 .config(function($routeProvider, $httpProvider){
     Stripe.setPublishableKey('pk_test_18jB465AmfCTngdGeiBtSqqp');
-
     $routeProvider
-
     /* LANDING PAGE */
     .when('/', {
         templateUrl: '/app/views/home.html',

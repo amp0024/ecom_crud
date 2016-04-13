@@ -1,25 +1,48 @@
-var app = angular.module('ecomApp');
+angular
+  .module('ecomApp')
+  .controller('PaymentController', PaymentController);
 
-app.controller('PaymentController', function ($scope, $http, stripe) {
-  $scope.charge = function () {
-    return stripe.card.createToken($scope.payment.card)
-      .then(function (response) {
-        console.log('token created for card ending in ', response.card.last4);
-        var payment = angular.copy($scope.payment);
-        payment.card = void 0;
-        payment.token = response.id;
-        return $http.post('/api/charge', payment);
-      })
-      .then(function (payment) {
-        console.log('successfully submitted payment for $', payment.amount);
-      })
-      .catch(function (err) {
-        if (err.type && /^Stripe/.test(err.type)) {
-          console.log('Stripe error: ', err.message);
-        }
-        else {
-          console.log('Other error occurred, possibly with your API', err.message);
-        }
-      });
-  };
-});
+PaymentController.$inject = ['$http'];
+function PaymentController($http) {
+  var self = this;
+
+  self.card = {};
+  self.payee = null;
+  self.amount = null;
+  self.paymentSuccessful = true;
+
+  self.pay = function() {
+    Stripe.card.createToken(self.card, function(status, response) {
+      if(status === 200) {
+        var data = {
+          card: self.card,
+          token: response.id,
+          amount: self.amount,
+          currency: "usd",
+          payee: self.payee
+        };
+
+        $http
+          .post('/api/charge', data)
+          .then(function(res) {
+            if(res.status === 200) {
+              self.paymentSuccessful = true;
+            }
+            else {
+              self.paymentSuccessful = false;
+            }
+          });
+      }
+    });
+  }
+
+  self.reset = function() {
+    self.card = {};
+    self.payee = "";
+    self.amount = null;
+    self.paymentSuccessful = false;
+    self.Form.$setPristine(true);
+    // use vanilla JS to reset form to remove browser's native autocomplete highlighting
+    document.getElementsByTagName('form')[0].reset();
+  }
+}

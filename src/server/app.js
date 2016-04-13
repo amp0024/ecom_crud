@@ -23,6 +23,7 @@ var admins = require('./routes/admins.js');
 var products = require('./routes/products.js');
 var carts = require('./routes/shoppingCart.js')
 var authRoutes = require('./routes/auth_routes.js');
+var charge = require('./routes/charge.js');
 
 // *** express instance *** //
 var app = express();
@@ -138,6 +139,7 @@ app.use('/api/manufacturers', manufacturers);
 app.use('/api/admin/admins', admins);
 app.use('/api/safe/customers', customers);
 app.use('/api/safe/carts', carts);
+app.use('/api/charge', charge);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

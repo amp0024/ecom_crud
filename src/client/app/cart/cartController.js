@@ -6,7 +6,7 @@ angular.module('ecomApp')
       .success(function(data) {
           $scope.checkout = data;
         }).error(function(error) {
-          $scope.status = 'Unable to load book data: ' + error.message;
+          $scope.status = 'Unable to load cart data: ' + error.message;
         });
     }
     getCheckout();

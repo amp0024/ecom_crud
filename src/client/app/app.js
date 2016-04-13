@@ -1,8 +1,9 @@
 'use strict';
 
+
 /* The main app with route configurations */
 
-angular.module('ecomApp', ['ngRoute', 'ngStorage', 'angular-loading-bar'])
+angular.module('ecomApp', ['ngRoute', 'ngStorage', 'angular-loading-bar', 'credit-cards', 'angular-stripe'])
 .config(function($routeProvider, $httpProvider){
     $routeProvider
 

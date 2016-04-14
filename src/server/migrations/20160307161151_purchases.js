@@ -5,6 +5,7 @@ exports.up = function(knex, Promise) {
     table.integer('product_id');
     table.integer('customer_id');
     table.dateTime('purchase_time');
+    table.integer('mfc_id');
     table.integer('quantity');
   })
 };

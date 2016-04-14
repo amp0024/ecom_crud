@@ -7,6 +7,7 @@ function PaymentController($http, $localStorage) {
   var self = this;
 
   var cart = $localStorage.cart;
+  var user = $localStorage.user;
   console.log(cart);
   self.card = {};
   self.payee = null;
@@ -18,6 +19,7 @@ function PaymentController($http, $localStorage) {
       if(status === 200) {
         var data = {
           cart: cart,
+          user: user,
           card: self.card,
           token: response.id,
           amount: self.amount,

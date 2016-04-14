@@ -4,7 +4,8 @@ var router = express.Router();
 var stripe = require('stripe')("sk_test_M68Y8QkeAR5Q7wHo6GITOKqZ");
 
 var query = require('../db/purchases_queries.js');
-var cart = require('../db/shopping_cart_queries.js')
+var cart = require('../db/shopping_cart_queries.js');
+var purchase = require('../db/purchases_queries.js');
 
 
 router.post("/", function(req, res) {
@@ -26,6 +27,14 @@ router.post("/", function(req, res) {
       }
       res.status(200).json({ message: "Payment successful" });
     });
+
+    data.forEach(function(item){
+      item.user_id = req.body.user;
+      purchase.createPurchase(item).then(function(data){
+        console.log(data);
+        console.log("Insert Purchase");
+      })
+    })
   })
 
 });

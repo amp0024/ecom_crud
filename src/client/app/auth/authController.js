@@ -6,8 +6,6 @@
                $localStorage.cart = res.cart[0];
                $localStorage.site_id = res.site_id;
                $localStorage.user = res.user;
-                           alert('pause');
-
                if ( res.admin === true ){
                  window.location = "/#/admin";
                } else {

@@ -29,7 +29,9 @@ router.post("/", function(req, res) {
     });
 
     data.forEach(function(item){
+      item.ship = req.body.ship;
       item.user_id = req.body.user;
+      console.log("item", item);
       purchase.createPurchase(item).then(function(data){
         console.log(data);
         console.log("Insert Purchase");

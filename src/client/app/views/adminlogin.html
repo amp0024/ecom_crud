@@ -1,5 +1,5 @@
-<div class="nine columns">
-  <h1> Admin Login</h1>
+<!-- <div class="nine columns">
+  <h1> Admin Login </h1>
   <form ng-submit="signin()">
     <h5>Username</h5>
     <input type="text" ng-model="username"><br>
@@ -11,4 +11,47 @@
      <li data-ng-hide="token"><a ng-href="/#/admin/register">Create New Store</a></li>
      <li data-ng-show="token"><a ng-click="logout()">Logout</a></li>
   </ul>
-</div>
+</div> -->
+
+
+<div class="container">
+              <div class="row">
+                <div class="col-md-5 col-md-offset-1 mt-100">
+                    <div class="content">
+
+                        <h1 class="page-header">Admin Sign In</h1>
+                        <p class="lead" data-ng-hide="token"><a href="/#/admin/register">Not an Admin? <b>Click here to register.</b></a></p>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                  <form ng-submit="signin()">
+                                    <div class="input-group">
+                                  
+                                        <input type="text" ng-model="username" class="form-control" placeholder="Your Name"><br>
+                                        <input type="password" ng-model="password" class="form-control" placeholder="Password"><br>
+                                        <span class="input-group-btn">
+                                          <button class="btn btn-circle" type="submit">Sign In</button>
+                                        </span>
+                                    </div>
+                                  </form>
+
+                              <!-- <form ng-submit="signin()">
+                                  <h5>Username</h5>
+                                  <input type="text" ng-model="username" class='focus'><br>
+                                  <h5>Password</h5>
+                                  <input type="password" ng-model="password" class="focus"><br>
+                                  <hr>
+                                  <input type="submit" class="btn btn-lg btn-block btn-success">
+                                  </form> -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+     
+                <div class="col-md-5 col-md-offset-1 text-center mt-100">
+                    <div class="phone">
+                        <img class="img-responsive img-rounded" src="./img/adminLogin.png">
+                    </div>
+                </div>
+              </div>
+            </div>

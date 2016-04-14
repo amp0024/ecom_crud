@@ -1,9 +1,41 @@
-<div class="nine columns">
-  <form ng-submit="signup()">
-    <h5>Username</h5>
-    <input type="text" ng-model="username"><br>
-    <h5>Password</h5>
-    <input type="password" ng-model="password"><br>
-    <input type="submit">
-  </form>
-</div>
+<div class="container">
+              <div class="row">
+                <div class="col-md-5 col-md-offset-1 mt-100">
+					
+                    <div class="content">
+                  
+                        <h1 class="page-header">Register here</h1>
+                        <p class="lead"><a href="#/login">Already a member? <b>Click here to Sign In.</b></a></p>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                  <form ng-submit="signup()">
+                                    <div class="input-group">
+                                        <input type="text" ng-model="username" class="form-control" placeholder="Your Name"><br>
+                                        <input type="password" ng-model="password" class="form-control" placeholder="Password"><br>
+                                        <span class="input-group-btn">
+                                          <button class="btn btn-primary btn-circle" type="submit">Sign In</button>
+                                        </span>
+                                    </div>
+                                  </form>
+
+                              <!-- <form ng-submit="signin()">
+                                  <h5>Username</h5>
+                                  <input type="text" ng-model="username" class='focus'><br>
+                                  <h5>Password</h5>
+                                  <input type="password" ng-model="password" class="focus"><br>
+                                  <hr>
+                                  <input type="submit" class="btn btn-lg btn-block btn-success">
+                                  </form> -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+          
+                <div class="col-md-5 col-md-offset-1 text-center mt-100">
+                    <div class="phone">
+                        <img class="img-responsive img-rounded" src="./img/registerimg.png">
+                    </div>
+                </div>
+              </div>
+            </div>

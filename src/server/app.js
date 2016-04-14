@@ -24,6 +24,7 @@ var products = require('./routes/products.js');
 var carts = require('./routes/shoppingCart.js')
 var authRoutes = require('./routes/auth_routes.js');
 var charge = require('./routes/charge.js');
+var purchases = require('./routes/purchases.js');
 
 // *** express instance *** //
 var app = express();
@@ -136,6 +137,7 @@ app.use('/api/admin/admins', admins);
 app.use('/api/safe/customers', customers);
 app.use('/api/safe/carts', carts);
 app.use('/api/charge', charge);
+app.use('/api/purchases', purchases);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,4 +1,4 @@
-<div class="nine columns">
+<!-- <div class="nine columns">
   <h1> Admin Register</h1>
   <form ng-submit="createMfc()">
     <h5>Username</h5>
@@ -20,3 +20,41 @@
      <li data-ng-show="token"><a ng-click="logout()">Logout</a></li>
   </ul>
 </div>
+ -->
+<div class="container">
+              <div class="row">
+                <div class="col-md-5 col-md-offset-1 mt-30 mb-100 {
+    margin-bottom: 100px;
+}">
+                    <div class="content">
+
+                        <h1 class="page-header">Store registration</h1>
+                        <p class="lead" data-ng-hide="token"><a href="/#/admin/login">Already have a store? <b>Click here to sign in.</b></a></p>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                  <form ng-submit="createMfc()">
+                                    <div class="input-group">
+                                  
+                                        <input type="text" ng-model="username" class="form-control" placeholder="Username"><br>
+                                        <input type="password" ng-model="password" class="form-control" placeholder="Password"><br>
+                                        <input type="text" ng-model="mfc.mfc_name" class="form-control" placeholder="Store Name"><br>
+                                        <input type="text" ng-model="mfc.location" class="form-control" placeholder="Location"><br>
+                                        <input type="text" ng-model="mfc.contact" class="form-control" placeholder="Contact Info"><br>
+                                        <input type="text" ng-model="mfc.logo_url" class="form-control" placeholder="Logo URL"><br>
+                                        <span class="input-group-btn">
+                                          <button class="btn btn-primary btn-circle" type="submit">Register</button>
+                                        </span>
+                                    </div>
+                                  </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+     
+                <div class="col-md-5 col-md-offset-1 text-center mt-100">
+                    <div class="phone">
+                        <img class="img-responsive img-rounded mt-30" src="./img/registeradmin.png">
+                    </div>
+                </div>
+              </div>
+            </div>

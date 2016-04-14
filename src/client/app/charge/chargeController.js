@@ -12,7 +12,7 @@ function PaymentController($http, $localStorage) {
   self.card = {};
   self.payee = null;
   self.amount = null;
-  self.paymentSuccessful = true;
+  self.paymentSuccessful = false;
 
   self.pay = function() {
     Stripe.card.createToken(self.card, function(status, response) {

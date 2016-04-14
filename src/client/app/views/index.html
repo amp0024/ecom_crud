@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/main.css">
   </head>
-  <body ng-controller="OmniCtrl">
+  <body ng-controller="ShowCartCtrl">
   <div class="wrapper">
     <nav class="navbar navbar-default" role="navigation">
         <div class="container">
@@ -36,18 +36,15 @@
                     <a href="/#/login" class="btn btn-primary btn-circle">Sign In</a>
                 </p>
             </li>
-            
-            <li data-ng-show="token"><button type="button" class="btn btn-success navbar-btn btn-circle" ng-click="toggleCart()">Shopping Cart {{cart.length}}</button></li>
-            <li data-ng-show="token"><button type="button" class="btn btn-primary navbar-btn btn-circle" ng-controller="AuthCtrl" ng-click="logout()">Logout</button></li>
+
+            <li data-ng-hide="!token"><button type="button" class="btn btn-success navbar-btn btn-circle" ng-click="toggleCart()">Shopping Cart {{cart.length}}</button></li>
+            <li data-ng-hide="!token"><button type="button" class="btn btn-primary navbar-btn btn-circle" ng-controller="AuthCtrl" ng-click="logout()">Logout</button></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-    <div class="cart text-center" ng-show="showCart" ng-controller="productCtrl">
-      <div ng-repeat="(key, value) in cart.items">
-        {{value}} x {{products[key-1].name}} = {{products[key-1].price * value | currency}}
-      </div>
-      <a type="button" class="btn btn-success navbar-btn btn-circle" href="/#/checkout">Checkout</a>
+    <div>
+      <shopping-cart></shopping-cart>
     </div>
     <ng-view></ng-view>
 
@@ -70,7 +67,8 @@
     <script src="./app/product/productFactory.js"></script>
     <script src="./app/auth/authController.js"></script>
     <script src="./app/auth/authFactory.js"></script>
-    <script src="./app/omni/omniController.js"></script>
+    <script src="./app/cart/showCartCtrl.js"></script>
+    <script src="./app/cart/cartDirective.js"></script>
     <script src="./app/cart/cartController.js"></script>
     <script src="./app/cart/cartFactory.js"></script>
     <script src="./app/mfc/mfcController.js"></script>

@@ -2,11 +2,11 @@ angular
   .module('ecomApp')
   .controller('PaymentController', PaymentController);
 
-PaymentController.$inject = ['$http', '$localStorage'];
-function PaymentController($http, $localStorage) {
+PaymentController.$inject = ['$http','$window', '$localStorage', 'cartFactory'];
+function PaymentController($http, $window, $localStorage, cartFactory) {
   var self = this;
 
-  var cart = $localStorage.cart;
+  var cart = cartFactory.getLocalCart();
   var user = $localStorage.user;
   self.ship = {};
   self.card = {};
@@ -16,7 +16,6 @@ function PaymentController($http, $localStorage) {
 
   self.pay = function() {
     Stripe.card.createToken(self.card, function(status, response) {
-      console.log(self.ship);
       if(status === 200) {
         var data = {
           ship: self.ship,
@@ -28,17 +27,22 @@ function PaymentController($http, $localStorage) {
           currency: "usd",
           payee: self.payee
         };
-
+        //Need to break this out into more logical promises
         $http
           .post('/api/charge', data)
           .then(function(res) {
             if(res.status === 200) {
               self.paymentSuccessful = true;
+              $http.post('/api/safe/carts', {'user': user}).then(function(response){
+                console.log("New Cart ID", response.data.cart);
+                cartFactory.setLocalCart(response.data.cart);
+                $window.location.href = '/';
+              })
             }
             else {
               self.paymentSuccessful = false;
             }
-          });
+          })
       }
     });
   }

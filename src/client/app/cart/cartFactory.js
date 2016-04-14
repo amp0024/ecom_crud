@@ -1,5 +1,5 @@
 angular.module('ecomApp')
-  .factory('cartFactory', ['$http', function($http){
+  .factory('cartFactory', ['$http', '$localStorage', function($http, $localStorage){
         var urlBase = '/api/safe/carts';
         var cartFactory = {};
         cartFactory.createCart = function() {
@@ -11,5 +11,11 @@ angular.module('ecomApp')
         cartFactory.getCheckout = function(cart_id){
           return $http.get(urlBase + "/checkout/"+cart_id);
         };
+        cartFactory.getLocalCart = function(){
+          return $localStorage.cart;
+        };
+        cartFactory.setLocalCart = function(cart_id){
+          $localStorage.cart = cart_id;
+        }
         return cartFactory;
   }]);

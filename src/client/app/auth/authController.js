@@ -1,9 +1,9 @@
  angular.module('ecomApp')
-  .controller('AuthCtrl', ['$rootScope', '$scope', '$location', '$localStorage', 'Auth',
-       function ($rootScope, $scope, $location, $localStorage, Auth) {
+  .controller('AuthCtrl', ['$rootScope', '$scope', '$location', '$localStorage', 'cartFactory', 'Auth',
+       function ($rootScope, $scope, $location, $localStorage, cartFactory, Auth) {
            function successAuth(res) {
                $localStorage.token = res.token;
-               $localStorage.cart = res.cart[0];
+               cartFactory.setLocalCart(res.cart[0]);
                $localStorage.site_id = res.site_id;
                $localStorage.user = res.user;
                if ( res.admin === true ){

@@ -1,6 +1,10 @@
 /* add custom styles */
 .navbar-brand img{height:100%;}
 
+ [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+      display: none !important;
+    }
+
 @media screen and (min-width:767px){
     .navbar-brand-centered {
         position: absolute;
@@ -34,7 +38,7 @@ font-family: 'Arial', 'Helvetica'; font-size: 18px; line-height: 30px;}
 
 .navbar-default {
      background-color: #292929;
-     border-color:transparent; 
+     border-color:transparent;
      padding-top: 65px;
       -webkit-box-shadow: 0 6px 6px 0px #999;
         -moz-box-shadow: 0 6px 6px 0px #999;

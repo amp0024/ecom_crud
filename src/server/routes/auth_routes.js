@@ -53,12 +53,6 @@ router.post('/register', function(req, res, next) {
           password: hashedPassword
         })
         .then(function(data) {
-          // req.flash('message', {
-          //   status: 'success',
-          //   message: 'Welcome!'
-          // });
-
-          // return res.redirect('/login');
           res.json({
             message: "You've registered",
             status: "Success"

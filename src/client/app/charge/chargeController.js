@@ -2,10 +2,13 @@ angular
   .module('ecomApp')
   .controller('PaymentController', PaymentController);
 
-PaymentController.$inject = ['$http'];
-function PaymentController($http) {
+PaymentController.$inject = ['$http', '$localStorage'];
+function PaymentController($http, $localStorage) {
   var self = this;
 
+  var cart = $localStorage.cart;
+  var user = $localStorage.user;
+  console.log(cart);
   self.card = {};
   self.payee = null;
   self.amount = null;
@@ -15,6 +18,8 @@ function PaymentController($http) {
     Stripe.card.createToken(self.card, function(status, response) {
       if(status === 200) {
         var data = {
+          cart: cart,
+          user: user,
           card: self.card,
           token: response.id,
           amount: self.amount,

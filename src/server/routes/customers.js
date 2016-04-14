@@ -56,13 +56,11 @@ router.post('/customerregister', function(req, res, next){
           // req.flash('info', 'Welcome, '+name+'! You have signed up!')
           res.redirect('/');
         }).catch(function(err){
-          console.log('other error');
           return next(err);
         });
       }
     })
     .catch(function(err){
-      console.log('other error2');
       return next(err);
     });
 });

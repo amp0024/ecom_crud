@@ -4,6 +4,7 @@ exports.up = function(knex, Promise) {
     table.increments();
     table.integer('user_id');
     table.boolean('is_active');
+    table.boolean('order_submitted');
     table.date('created_date');
   });
 };

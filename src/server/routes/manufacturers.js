@@ -29,10 +29,6 @@ router.post('/', function(req, res, next){
     .then(function(data){
       // if username is in the database send an error
       if(data.length) {
-          console.log('message', {
-            status: 'danger',
-            message: 'username already exists.!'
-          });
           return res.redirect('/register');
       } else {
         // hash and salt the password
@@ -46,11 +42,9 @@ router.post('/', function(req, res, next){
           site_id: mfcdata[0]
         })
         .then(function(user){
-          console.log("inserted!");
           res.json(data[0]);
         })
         .catch(function(err) {
-          console.log(err);
           return res.send("wrong!");
         });
       }

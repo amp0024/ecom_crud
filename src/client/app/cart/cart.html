@@ -1,0 +1,6 @@
+<div class="cart text-center" ng-hide="showCart" ng-controller="productCtrl">
+  <div ng-repeat="(key, value) in cart.items">
+    {{value}} x {{products[key-1].name}} = {{products[key-1].price * value | currency}}
+  </div>
+  <a type="button" class="btn btn-success navbar-btn btn-circle" href="/#/checkout">Checkout</a>
+</div>

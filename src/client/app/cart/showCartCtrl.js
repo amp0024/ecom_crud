@@ -1,8 +1,8 @@
 angular.module('ecomApp')
-  .controller('OmniCtrl', ['$scope', '$http', '$routeParams', 'productFactory', '$localStorage', function($scope, $http, $routeParams, productFactory, $localStorage){
+  .controller('ShowCartCtrl', ['$scope', '$http', '$routeParams', 'productFactory', '$localStorage', function($scope, $http, $routeParams, productFactory, $localStorage){
 
     $scope.token = $localStorage.token;
-    $scope.showCart = false;
+    $scope.showCart = true;
 
     function getCartProducts(){
       var token = $localStorage.token;
@@ -19,16 +19,13 @@ angular.module('ecomApp')
               }
             });
             $scope.cart = cart;
-
         }).error(function(error){
           $scope.status = error.message;
         });
-
     }
     getCartProducts();
 
     $scope.toggleCart = function(){
       $scope.showCart = !$scope.showCart;
     };
-
   }]);

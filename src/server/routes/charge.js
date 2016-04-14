@@ -11,11 +11,9 @@ var purchase = require('../db/purchases_queries.js');
 router.post("/", function(req, res) {
   var token = req.body.token;
   cart.getCheckout(req.body.cart).then(function(data){
-    console.log(data);
     total = data.reduce(function(prev, curr){
       return prev + parseFloat(curr.price);
     }, 0)
-    console.log("Total: ", total);
     var charge = stripe.charges.create({
       amount: parseInt(parseFloat(total * 100), 10),
       source: token,
@@ -25,16 +23,16 @@ router.post("/", function(req, res) {
       if(err) {
         return res.json({ message: err })
       }
-      res.status(200).json({ message: "Payment successful" });
+      cart.deactivateCart(req.body.cart).then(function(data){
+        res.status(200).json({ message: "Payment successful" });
+      });
     });
 
     data.forEach(function(item){
       item.ship = req.body.ship;
       item.user_id = req.body.user;
-      console.log("item", item);
       purchase.createPurchase(item).then(function(data){
-        console.log(data);
-        console.log("Insert Purchase");
+        console.log('yay!');
       })
     })
   })

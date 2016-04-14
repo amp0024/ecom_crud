@@ -5,7 +5,8 @@ angular
 function shoppingCart() {
     var directive = {
         templateUrl: './app/cart/cart.html',
-        restrict: 'EA'
+        restrict: 'EA',
+        controller: 'ShowCartCtrl'
     };
     return directive;
 

@@ -13,10 +13,11 @@ module.exports = {
   },
   createPurchase: function(purchase){
     return Purchases().insert({
-      'product_id': purchase.product_id,
-      'customer_id': purchase.customer_id,
+      'product_id': purchase.id,
+      'customer_id': purchase.user_id,
       'purchase_time': new Date(),
-      'quantity': purchase.quantity
+      'mfc_id': purchase.mfc_id,
+      'quantity': purchase.count
     });
   }
 }

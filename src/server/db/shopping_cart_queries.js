@@ -25,7 +25,7 @@ module.exports = {
             .innerJoin('products', 'products.id', 'cart_products.product_id')
             .innerJoin('shopping_cart', 'shopping_cart.id', 'cart_products.cart_id')
             .where({'cart_products.cart_id': cart_id})
-            .select('products.name', 'products.img_url', 'products.price', 'products.type', 'products.volume')
+            .select('products.name', 'products.img_url', 'products.price', 'products.type', 'products.volume', 'products.mfc_id', 'products.id' )
             .groupBy('products.id')
             .count('products.id');
   }

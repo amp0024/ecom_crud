@@ -19,5 +19,11 @@ module.exports = {
       'mfc_id': purchase.mfc_id,
       'quantity': purchase.count
     });
+  },
+  getPurchByMfc: function(mfc_id){
+    return Purchases().select()
+                      .innerJoin('manufacturers', 'manufacturers.id', 'mfc_id')
+                      .innerJoin('users', 'users.id', 'customer_id')
+                      .where({'mfc_id': mfc_id});
   }
 }

@@ -8,7 +8,7 @@ function PaymentController($http, $localStorage) {
 
   var cart = $localStorage.cart;
   var user = $localStorage.user;
-  console.log(cart);
+  self.ship = {};
   self.card = {};
   self.payee = null;
   self.amount = null;
@@ -16,8 +16,10 @@ function PaymentController($http, $localStorage) {
 
   self.pay = function() {
     Stripe.card.createToken(self.card, function(status, response) {
+      console.log(self.ship);
       if(status === 200) {
         var data = {
+          ship: self.ship,
           cart: cart,
           user: user,
           card: self.card,

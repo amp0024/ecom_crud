@@ -36,6 +36,7 @@ module.exports = {
   getPurchByCust: function(user_id){
     return Purchases().select()
                       .innerJoin('products', 'purchases.product_id', 'products.id')
+                      .orderBy('purchase_time', 'desc')
                       .where({'customer_id': user_id});
   }
 }

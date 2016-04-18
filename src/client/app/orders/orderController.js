@@ -4,9 +4,9 @@
       function getOrders(){
       orderFactory.getOrderByUser(user_id)
         .success(function(data) {
-          console.log(data);
+          console.log($localStorage.setOrdered);
           $scope.orders = data;
-          $scope.order = data[0]
+          $scope.order = data[data.length-1]
         }).error(function(error) {
           $scope.status = 'Unable to load book data: ' + error.message;
         });

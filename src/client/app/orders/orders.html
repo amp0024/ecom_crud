@@ -1,5 +1,10 @@
 <!-- If order placed, show thank you for order & order details -->
-
+<div class="container" ng-controller="PaymentController as payment">
+  <div ng-show="payment.paymentSuccessful">
+    aldjflkasdjkfljsdf
+  </div>
+  {{payment.paymentSuccessful}}
+</div>
 <div class="container">
     <div class="jumbotron">
       <div class="container">
@@ -13,8 +18,7 @@
         <div class="panel panel-default">
           <div class="panel-body">
           <div>
-            <p>{{order}} {{item.volume}} x {{item.count}}</p>
-            <p>{{item.price * item.count}}</p>
+            <p>{{order}}</p>
           </div>
             <hr>
             <div class="row">

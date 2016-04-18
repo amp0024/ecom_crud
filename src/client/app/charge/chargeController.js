@@ -2,8 +2,8 @@ angular
   .module('ecomApp')
   .controller('PaymentController', PaymentController);
 
-PaymentController.$inject = ['$http','$window', '$localStorage', 'cartFactory'];
-function PaymentController($http, $window, $localStorage, cartFactory) {
+PaymentController.$inject = ['$http','$window', '$localStorage', 'cartFactory','orderFactory'];
+function PaymentController($http, $window, $localStorage, cartFactory, orderFactory) {
   var self = this;
 
   var cart = cartFactory.getLocalCart();
@@ -12,7 +12,6 @@ function PaymentController($http, $window, $localStorage, cartFactory) {
   self.card = {};
   self.payee = null;
   self.amount = null;
-  self.paymentSuccessful = false;
 
   self.pay = function() {
     Stripe.card.createToken(self.card, function(status, response) {
@@ -32,15 +31,17 @@ function PaymentController($http, $window, $localStorage, cartFactory) {
           .post('/api/charge', data)
           .then(function(res) {
             if(res.status === 200) {
-              self.paymentSuccessful = true;
+                console.log();
+                $localStorage.setOrdered = true;
               $http.post('/api/safe/carts', {'user': user}).then(function(response){
-                console.log("New Cart ID", response.data.cart);
                 cartFactory.setLocalCart(response.data.cart);
-                $window.location.href = '/';
+                console.log("New Cart ID", response.data.cart);
+                $window.location.href = '/#/orders';
               })
             }
             else {
-              self.paymentSuccessful = false;
+
+              self.paymentSuccessful = $localStorage.setOrdered;
             }
           })
       }

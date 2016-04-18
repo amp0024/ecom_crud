@@ -1,47 +1,29 @@
-// add scripts
-
-
-//The function below is janky as hell, need refactoring.
-// $(document).on('ready', function() {
-//   console.log('sanity check!');
-//   console.log(sessionStorage.products);
-//   $.ajax('/api/products').done(function(data){
-//     console.log(data);
-//   var seshCart = JSON.parse(sessionStorage.products);
-//     var runTotal = 0;
-//     seshCart.map(function(id){
-//         $('#checkoutProducts').append(
-//           '<h1>'+data[JSON.parse(id)-1].name+" "+data[JSON.parse(id)-1].price+'</h1>'
-//         );
-//         runTotal += parseFloat(data[JSON.parse(id)-1].price)
-//     });
-//     $("#total").html(runTotal);
-//   });
-
-// });
-
-// var prodArr = [];
-
-// $('.purchaseProduct').on('click', function(){
-//   if (sessionStorage.products){
-//     prodArr = JSON.parse(sessionStorage.products);
-//   }
-//   var product = $(this).attr('id');
-//   prodArr.push(product);
-//   console.log(prodArr);
-//   var addVal = JSON.stringify(prodArr);
-//   sessionStorage.setItem('products', addVal);
-// });
-
-// $.ajax('/api/products').done(function(data){
-//   console.log(data);
-//   var seshCart = JSON.parse(sessionStorage.products);
-//   seshCart.map(function(id){
-//     $('#cartTable').append('<tr><td>'+data[JSON.parse(id)-1].name+'</td><td>'+data[JSON.parse(id)-1].volume+'</td><td>'+'$'+data[JSON.parse(id)-1].price+'</td></tr>');
-
-//   });
-//   console.log(seshCart);
-// });
-
-
-
+$(document).ready(function(){
+	console.log('ready');
+	var clickEvent = false;
+	$('#myCarousel').carousel({
+		interval:   4000	
+	}).on('click', '.list-group-item li', function() {
+		console.log('click')
+			clickEvent = true;
+			$('.list-group-item li').removeClass('active');
+			$(this).addClass('active');		
+	}).on('slid.bs.carousel', function(e) {
+		// if(!clickEvent) {
+		// 	var count = $('.list-group-item').children().length -1;
+		// 	var current = $('.list-group-item li.active');
+		// 	current.removeClass('active').next().addClass('active');
+		// 	var id = parseInt(current.data('slide-to'));
+		// 	if(count == id) {
+		// 		$('.list-group-item li').first().addClass('active');	
+		// 	}
+		// }
+		// clickEvent = false;
+	});
+});
+$(window).load(function() {
+    var boxheight = $('#myCarousel .carousel-inner').innerHeight();
+    var itemlength = $('#myCarousel .item').length;
+	var triggerheight = Math.round(boxheight/itemlength+1);
+	$('#myCarousel .list-group-item').outerHeight(triggerheight);
+});

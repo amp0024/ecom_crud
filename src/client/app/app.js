@@ -54,7 +54,6 @@ angular.module('ecomApp', ['ngRoute', 'ngStorage', 'angular-loading-bar'])
       templateUrl: '/app/views/manufacturers.html',
       controller: 'AllMfcCtrl'
     })
-    .otherwise('/');
 
     $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {
    return {

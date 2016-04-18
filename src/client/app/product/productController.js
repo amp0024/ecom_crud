@@ -5,6 +5,7 @@
       productFactory.getProducts()
         .success(function(data) {
           $scope.products = data;
+          console.log($scope.products)
         }).error(function(error) {
           $scope.status = 'Unable to load book data: ' + error.message;
         });
@@ -45,4 +46,43 @@
           $scope.status = error.message;
         });
     };
-  }]);
+  }])
+  .controller('folderCtrl', function ($scope, $http) {
+  $scope.w = window.outerWidth;
+  $scope.h = window.innerHeight-20;
+  $scope.uri = "http://lorempixel.com";
+  $scope.folders = [
+    'abstract',
+    'animals',
+    'business',
+    'cats',
+    'city',
+    'food',
+    'night',
+    'life',
+    'fashion',
+    'people',
+    'nature',
+    'sports'
+  ];
+  $scope.getMfcImages = function(mfc_id){
+    //Math.rand manufacturer
+    $scope.products.map(function(product){
+      if (product.mfc_id === mfc_id){
+        return product.img_url;
+      }
+    });
+  };
+  $scope.images = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  //Below would be scopeCurrentImg
+  $scope.currentFolder = $scope.folders[0];
+  $scope.selectFolder = function (folder) {
+    console.log("Select Folder Called! ", folder);
+    //$scope.img_url
+    $scope.currentFolder = folder;
+  };
+  //$scope.img_url for below
+  $scope.activeFolder = function (folder) {
+    return (folder === $scope.currentFolder) ? 'active' : '';
+  };
+});

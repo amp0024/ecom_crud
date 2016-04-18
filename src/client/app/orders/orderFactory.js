@@ -23,5 +23,9 @@ angular.module('ecomApp')
           return $localStorage.setOrdered;
          } ;
 
+         orderFactory.changeStatus = function(order_id){
+          return $http.post(urlBase + "order/" + order_id);
+         }
+
         return orderFactory;
   }]);

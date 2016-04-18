@@ -82,7 +82,7 @@
                             <td>{{order.city}}</td>
                             <td>{{order.purchase_time}}</td>
                             <td>
-                              <span ng-if="order.order_status==='active'"><button class="btn btn-default">Ship</button></span>
+                              <span ng-if="order.order_status==='active'"><button class="btn btn-default" ng-click="changeStatus(order.order_id)">Ship</button></span>
                               <span ng-if="order.order_status==='shipped'">Shipped!</span></td>
                           </tr>
                       </tbody>

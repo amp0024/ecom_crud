@@ -30,7 +30,7 @@ module.exports = {
   },
   getPurchByMfc: function(mfc_id){
     return Purchases().select()
-                      .innerJoin('manufacturers', 'manufacturers.id', 'mfc_id')
+                      .innerJoin('manufacturers', 'manufacturers.id', 'purchases.mfc_id')
                       .innerJoin('users', 'users.id', 'customer_id')
                       .where({'mfc_id': mfc_id});
   },
@@ -39,5 +39,10 @@ module.exports = {
                       .innerJoin('products', 'purchases.product_id', 'products.id')
                       .orderBy('purchase_time', 'desc')
                       .where({'customer_id': user_id});
+  },
+  changeOrderStatus: function(order_id){
+    console.log(order_id);
+    return Purchases().where({'order_id': order_id})
+                      .update('order_status', 'shipped');
   }
 }

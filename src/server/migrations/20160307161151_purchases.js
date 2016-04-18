@@ -1,7 +1,7 @@
 
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('purchases', function(table){
-    table.increments();
+    table.increments('order_id');
     table.integer('product_id');
     table.integer('customer_id');
     table.string('shipName');

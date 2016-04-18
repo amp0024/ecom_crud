@@ -13,6 +13,7 @@ exports.up = function(knex, Promise) {
     table.dateTime('purchase_time');
     table.integer('mfc_id');
     table.integer('quantity');
+    table.string('order_status');
   })
 };
 

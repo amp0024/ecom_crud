@@ -1,4 +1,4 @@
-name,type,price,volume,img_url,mfc_id
-Wolf Picker,Pale Ale,20.99,12 Pack,http://brewtallyinsane.com/wp-content/uploads/2014/12/odell-wolfpicker-595x1024.jpg,1
-Lefthand Milk Stout,Milk Stout,120.99,Keg,http://lefthandbrewing.com/wp/wp-content/uploads/2013/06/milk-stout-nitro.png,2
-White Rascal,Belgian,12.99,Growler,https://www.sherryswine.com/images/labels/avery-brewing-co-white-rascal.gif,3
+name,type,price,volume,img_url,mfc_id,inventory
+Wolf Picker,Pale Ale,20.99,12 Pack,http://brewtallyinsane.com/wp-content/uploads/2014/12/odell-wolfpicker-595x1024.jpg,1,10
+Lefthand Milk Stout,Milk Stout,120.99,Keg,http://lefthandbrewing.com/wp/wp-content/uploads/2013/06/milk-stout-nitro.png,2,12
+White Rascal,Belgian,12.99,Growler,https://www.sherryswine.com/images/labels/avery-brewing-co-white-rascal.gif,3,2

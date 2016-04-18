@@ -6,7 +6,8 @@ angular.module('ecomApp')
 
     function getCartProducts(){
       var token = $localStorage.token;
-      var cart = cartFactory.getLocalCart();
+      var cart = $localStorage.cart;
+      console.log(cart);
       console.log("Cart to show: ", cart);
       productFactory.getCartProducts(cart)
         .success(function(data){

@@ -17,6 +17,7 @@ router.get('/:product_id', function(req, res, next){
 });
 
 router.post('/', function(req, res, next){
+  console.log(req.body);
   query.createProduct(req.body).then(function(data){
     res.json(data[0]);
   });

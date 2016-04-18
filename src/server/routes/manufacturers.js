@@ -23,6 +23,7 @@ function hashing (password) {
 }
 
 router.post('/', function(req, res, next){
+  console.log(req.body.mfc);
   query.createManufacturer(req.body.mfc).then(function(mfcdata){
     var hashedPassword = hashing(req.body.password);
     knex('users').where('username', req.body.username)
@@ -31,6 +32,7 @@ router.post('/', function(req, res, next){
       if(data.length) {
           return res.redirect('/register');
       } else {
+
         // hash and salt the password
         var hashedPassword = hashing(req.body.password);
         // if username is not in the database insert it

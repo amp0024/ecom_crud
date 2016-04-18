@@ -46,6 +46,10 @@ angular.module('ecomApp', ['ngRoute', 'ngStorage', 'angular-loading-bar'])
       templateUrl: '/app/views/products.html',
       controller: 'productCtrl'
     })
+    .when('/orders', {
+      templateUrl: '/app/orders/orders.html',
+      controller: 'OrderCtrl'
+    })
     .when('/manufacturers', {
       templateUrl: '/app/views/manufacturers.html',
       controller: 'AllMfcCtrl'

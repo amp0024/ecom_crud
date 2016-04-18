@@ -32,5 +32,11 @@ module.exports = {
                       .innerJoin('manufacturers', 'manufacturers.id', 'mfc_id')
                       .innerJoin('users', 'users.id', 'customer_id')
                       .where({'mfc_id': mfc_id});
+  },
+  getPurchByCust: function(user_id){
+    return Purchases().select()
+                      .innerJoin('products', 'purchases.product_id', 'products.id')
+                      .orderBy('purchase_time', 'desc')
+                      .where({'customer_id': user_id});
   }
 }

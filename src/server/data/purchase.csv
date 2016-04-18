@@ -1,4 +1,4 @@
-product_id,customer_id,purchase_time,quantity
-1,1,'Mon Mar 07 2016 20:34:58Z',2
-2,2,'Mon Mar 07 2016 20:34:58Z',3
-3,3,'Mon Mar 07 2016 20:34:58Z',4
+product_id,customer_id,purchase_time,quantity, order_status
+1,1,'Mon Mar 07 2016 20:34:58Z',2,active
+2,2,'Mon Mar 07 2016 20:34:58Z',3,active
+3,3,'Mon Mar 07 2016 20:34:58Z',4,active

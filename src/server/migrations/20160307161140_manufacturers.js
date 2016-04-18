@@ -6,6 +6,7 @@ exports.up = function(knex, Promise) {
     table.string('location');
     table.string('contact');
     table.string('logo_url');
+    table.string('background_header');
   })
 };
 

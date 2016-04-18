@@ -24,7 +24,8 @@ module.exports = {
       'address2': purchase.ship.address2,
       'city': purchase.ship.city,
       'state': purchase.ship.state,
-      'zip': purchase.ship.zip
+      'zip': purchase.ship.zip,
+      'order_status': 'active'
     });
   },
   getPurchByMfc: function(mfc_id){

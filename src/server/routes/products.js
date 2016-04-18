@@ -9,10 +9,16 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.get('/:product_id', function(req, res, next){
-    query.getProduct(req.params.product_id).then(function(product){
+router.get('/product/:product_id', function(req, res, next){
+  query.getProduct(req.params.product_id).then(function(product){
     res.json(product);
     // res.render('productView', { products: product });
+  });
+});
+
+router.get('/mfc/:mfc_id', function(req, res, next){
+  query.getProductsByMfc(req.params.mfc_id).then(function(products){
+    res.json(products);
   });
 });
 

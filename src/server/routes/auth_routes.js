@@ -84,17 +84,25 @@ router.post('/login', function(req, res, next) {
           var token = jwt.sign(user, 'superSecret', {
             expiresIn: 6000
           });
-          cart.createCart(user.id).then(function(cartData){
+          if (user.is_admin === true){
             res.json({
               success: true,
-              cart: cartData,
               user: user.id,
               admin: user.is_admin,
-              site_id: user.site_id,
-              token: token
+              mfc_id: user.site_id
+            })
+          } else {
+            cart.createCart(user.id).then(function(cartData){
+              res.json({
+                success: true,
+                cart: cartData,
+                user: user.id,
+                admin: user.is_admin,
+                site_id: user.site_id,
+                token: token
+              });
             });
-          });
-
+          }
           // return done(null, user);
         } else {
           // passwords don't match! return error

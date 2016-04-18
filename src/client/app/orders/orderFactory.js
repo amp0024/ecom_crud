@@ -1,6 +1,6 @@
 angular.module('ecomApp')
   .factory('orderFactory', ['$http', '$localStorage', function($http, $localStorage){
-        var urlBase = '/api/purchases/user';
+        var urlBase = '/api/purchases/';
         var orderFactory = {};
         var user_id = $localStorage.user;
 
@@ -10,8 +10,12 @@ angular.module('ecomApp')
         };
 
         orderFactory.getOrderByUser = function(user_id) {
-          return $http.get(urlBase + "/" + user_id);
+          return $http.get(urlBase + "user/" + user_id);
         };
+
+        orderFactory.getOrdersByMfc = function(mfc_id){
+          return $http.get(urlBase + "mfc/" + mfc_id);
+        }
 
         orderFactory.setOrdered = function(){
           $localStorage.setOrdered = !$localStorage.setOrdered;

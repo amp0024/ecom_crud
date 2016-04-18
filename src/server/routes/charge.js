@@ -7,11 +7,19 @@ var pw = process.env.GMAIL_PW;
 var transporter = nodemailer.createTransport('smtps://dannyrobinsontestmail%40gmail.com:'+pw+'@smtp.gmail.com');
 
 // setup e-mail data with unicode symbols
-var mailOptions = {
-    from: '"Fred Foo 👥" <danny.robinson111@gmail.com>', // sender address
+var mailOptionsCustomer = {
+    from: '"Big Dan" <danny.robinson111@gmail.com>', // sender address
     to: 'daniel@djrobinson.me', // list of receivers
-    subject: 'Hello ✔', // Subject line
-    text: 'Hello world 🐴', // plaintext body
+    subject: 'Your order is inbound!', // Subject line
+    text: 'Order Order!', // plaintext body
+    html: '<b>Hello world 🐴</b>' // html body
+};
+
+var mailOptionsMfc = {
+    from: '"Big Dan <danny.robinson111@gmail.com>', // sender address
+    to: 'daniel@djrobinson.me', // list of receivers
+    subject: 'You have a new order!', // Subject line
+    text: 'Order Order!', // plaintext body
     html: '<b>Hello world 🐴</b>' // html body
 };
 
@@ -38,7 +46,13 @@ router.post("/", function(req, res) {
         return res.json({ message: err })
       }
       cart.deactivateCart(req.body.cart).then(function(data){
-        transporter.sendMail(mailOptions, function(error, info){
+        transporter.sendMail(mailOptionsCustomer, function(error, info){
+            if(error){
+                return console.log(error);
+            }
+            console.log('Message sent: ' + info.response);
+        });
+        transporter.sendMail(mailOptionsMfc, function(error, info){
             if(error){
                 return console.log(error);
             }

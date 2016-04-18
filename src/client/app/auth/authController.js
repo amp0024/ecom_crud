@@ -2,13 +2,15 @@
   .controller('AuthCtrl', ['$rootScope', '$scope', '$location', '$localStorage', 'cartFactory', 'Auth',
        function ($rootScope, $scope, $location, $localStorage, cartFactory, Auth) {
            function successAuth(res) {
+               console.log(res);
                $localStorage.token = res.token;
-               cartFactory.setLocalCart(res.cart[0]);
-               $localStorage.site_id = res.site_id;
-               $localStorage.user = res.user;
                if ( res.admin === true ){
+                 $localStorage.mfc_id = res.mfc_id;
+                 $localStorage.user = res.user;
                  window.location = "/#/admin";
                } else {
+                 cartFactory.setLocalCart(res.cart[0]);
+                 $localStorage.user = res.user;
                  window.location = "/";
                }
            }

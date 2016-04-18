@@ -4,7 +4,8 @@
       function getOrders(){
       orderFactory.getOrderByUser(user_id)
         .success(function(data) {
-          console.log($localStorage.setOrdered);
+          console.log("Cart! ",   $localStorage.cart);
+          $scope.cart = $localStorage.cart;
           $scope.orders = data;
           $scope.order = data[data.length-1]
         }).error(function(error) {

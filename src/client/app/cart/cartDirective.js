@@ -1,4 +1,4 @@
-angular
+  angular
     .module('ecomApp')
     .directive('shoppingCart', shoppingCart);
 

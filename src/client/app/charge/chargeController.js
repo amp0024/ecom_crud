@@ -35,8 +35,10 @@ function PaymentController($http, $window, $localStorage, cartFactory, orderFact
                 $localStorage.setOrdered = true;
               $http.post('/api/safe/carts', {'user': user}).then(function(response){
                 cartFactory.setLocalCart(response.data.cart);
+                //Why is the cart not being taken out of the cart popup when this is called?
+                console.log("Cart! ",   $localStorage.cart);
                 console.log("New Cart ID", response.data.cart);
-                $window.location.href = '/#/orders';
+                $window.location.href = '/';
               })
             }
             else {

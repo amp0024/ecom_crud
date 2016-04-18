@@ -1,9 +1,5 @@
-<!-- If order placed, show thank you for order & order details -->
-<div class="container" ng-controller="PaymentController as payment">
-  <div ng-show="payment.paymentSuccessful">
-    aldjflkasdjkfljsdf
-  </div>
-  {{payment.paymentSuccessful}}
+<div ng-controller="ShowCartCtrl as show">
+  {{cart}}
 </div>
 <div class="container">
     <div class="jumbotron">
@@ -20,6 +16,7 @@
           <div>
             <p>{{order}}</p>
           </div>
+          {{cart}}
             <hr>
             <div class="row">
               <div class="col-xs-6 col-md-6 col-lg-6">

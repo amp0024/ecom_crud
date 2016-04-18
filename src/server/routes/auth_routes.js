@@ -106,12 +106,12 @@ router.post('/login', function(req, res, next) {
           // return done(null, user);
         } else {
           // passwords don't match! return error
-          return done('Incorrect password.');
+          return res.json('Incorrect password.');
         }
       })
       .catch(function(err) {
         // issue with SQL/nex query
-        return done('Incorrect username and/or password.');
+        return res.json('Incorrect username and/or password.');
       });
 });
 

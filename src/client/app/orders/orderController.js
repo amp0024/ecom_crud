@@ -17,4 +17,14 @@
     var mfc_id = $localStorage;
     console.log(mfc_id);
 
+    $scope.changeStatus = function(order_id){
+      console.log("Change status!!");
+      orderFactory.changeStatus(order_id)
+        .success(function(data){
+          console.log($scope.orders);
+        })
+        .error(function(error){
+          $scope.status = 'Couldn\'t change order details: ' + error.message;
+        })
+    }
   }])

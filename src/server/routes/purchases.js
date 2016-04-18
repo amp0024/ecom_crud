@@ -16,4 +16,12 @@ router.get('/user/:user_id', function(req, res, next){
   })
 });
 
+router.post('/order/:order_id', function(req, res, next){
+  query.changeOrderStatus(req.params.order_id).then(function(data){
+    console.log(data);
+  }).catch(function(err){
+    console.log(err);
+  });
+})
+
 module.exports = router;

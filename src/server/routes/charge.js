@@ -1,7 +1,29 @@
 var express = require('express');
 var router = express.Router();
+var nodemailer = require('nodemailer');
 
-var stripe = require('stripe')("sk_test_M68Y8QkeAR5Q7wHo6GITOKqZ");
+// create reusable transporter object using the default SMTP transport
+var pw = process.env.GMAIL_PW;
+var transporter = nodemailer.createTransport('smtps://dannyrobinsontestmail%40gmail.com:'+pw+'@smtp.gmail.com');
+
+// setup e-mail data with unicode symbols
+var mailOptionsCustomer = {
+    from: '"Big Dan" <danny.robinson111@gmail.com>', // sender address
+    to: 'daniel@djrobinson.me', // list of receivers
+    subject: 'Your order is inbound!', // Subject line
+    text: 'Order Order!', // plaintext body
+    html: '<b>Hello world 🐴</b>' // html body
+};
+
+var mailOptionsMfc = {
+    from: '"Big Dan <danny.robinson111@gmail.com>', // sender address
+    to: 'daniel@djrobinson.me', // list of receivers
+    subject: 'You have a new order!', // Subject line
+    text: 'Order Order!', // plaintext body
+    html: '<b>Hello world 🐴</b>' // html body
+};
+
+var stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 var query = require('../db/purchases_queries.js');
 var cart = require('../db/shopping_cart_queries.js');
@@ -24,6 +46,18 @@ router.post("/", function(req, res) {
         return res.json({ message: err })
       }
       cart.deactivateCart(req.body.cart).then(function(data){
+        transporter.sendMail(mailOptionsCustomer, function(error, info){
+            if(error){
+                return console.log(error);
+            }
+            console.log('Message sent: ' + info.response);
+        });
+        transporter.sendMail(mailOptionsMfc, function(error, info){
+            if(error){
+                return console.log(error);
+            }
+            console.log('Message sent: ' + info.response);
+        });
         res.status(200).json({ message: "Payment successful" });
       });
     });

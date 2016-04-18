@@ -40,7 +40,7 @@ angular.module('ecomApp', ['ngRoute', 'ngStorage', 'angular-loading-bar'])
     })
     .when('/admin', {
       templateUrl: '/app/views/admindashboard.html',
-      controller: 'productCtrl'
+      controller: 'SingleMfcCtrl'
     })
     .when('/products', {
       templateUrl: '/app/views/products.html',

@@ -4,7 +4,6 @@
       function getOrders(){
       orderFactory.getOrderByUser(user_id)
         .success(function(data) {
-          console.log("Cart! ",   $localStorage.cart);
           $scope.cart = $localStorage.cart;
           $scope.orders = data;
           $scope.order = data[data.length-1]
@@ -13,4 +12,9 @@
         });
       }
     getOrders();
-  }]);
+  }])
+  .controller('MfcOrderCtrl', ['$scope', '$http', '$routeParams', 'orderFactory', '$localStorage', function($scope, $http, $routeParams, orderFactory, $localStorage){
+    var mfc_id = $localStorage;
+    console.log(mfc_id);
+
+  }])

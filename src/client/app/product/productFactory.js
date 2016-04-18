@@ -9,11 +9,15 @@ angular.module('ecomApp')
         };
 
         productFactory.getProduct = function(product_id) {
-          return $http.get(urlBase + "/" + product_id);
+          return $http.get(urlBase + "/product/" + product_id);
         };
 
         productFactory.addProduct = function(product){
           return $http.post(urlBase, product);
+        };
+
+        productFactory.getProductByMfc = function(mfc_id){
+          return $http.get(urlBase + "/mfc/" + mfc_id);
         };
 
         productFactory.addToCart = function(product_id, cart){

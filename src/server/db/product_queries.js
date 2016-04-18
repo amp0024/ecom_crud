@@ -11,6 +11,11 @@ module.exports = {
   getProduct: function(id){
     return Products().where('id', id);
   },
+  getProductsByMfc: function(mfc_id){
+    return Products().select()
+            .join('manufacturers', 'mfc_id', 'manufacturers.id')
+            .where({'mfc_id': mfc_id});
+  },
   createProduct: function(product){
     return Products().insert(product, 'id');
   },

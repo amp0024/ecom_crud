@@ -21,6 +21,13 @@ router.get('/mfc/:mfc_id', function(req, res, next){
   });
 });
 
+router.post('/update/:product_id', function(req, res, next){
+  console.log("Running!!!");
+  query.updateProduct(req.body, req.params.product_id).then(function(product){
+    res.json(product);
+  })
+})
+
 router.post('/', function(req, res, next){
   console.log(req.body);
   query.createProduct(req.body).then(function(data){

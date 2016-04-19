@@ -10,5 +10,9 @@ module.exports = {
   },
   getCustomer: function(id){
     return Customers().where('id', id);
+  },
+  createCustomer: function(customer){
+    console.log("Query Customer ", customer);
+    return Customers().insert(customer, 'id');
   }
 }

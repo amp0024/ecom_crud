@@ -16,6 +16,10 @@ angular.module('ecomApp')
           return $http.post(urlBase, product);
         };
 
+        productFactory.updateProduct = function(product){
+          return $http.post(urlBase +"/update/"+product.id, product);
+        }
+
         productFactory.getProductByMfc = function(mfc_id){
           return $http.get(urlBase + "/mfc/" + mfc_id);
         };

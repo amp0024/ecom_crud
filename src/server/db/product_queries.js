@@ -19,7 +19,7 @@ module.exports = {
   createProduct: function(product){
     return Products().insert(product, 'id');
   },
-  editProduct: function(product, id){
+  updateProduct: function(product, id){
     return Products().where('id', id).update(product);
   },
   deleteProduct: function(id){

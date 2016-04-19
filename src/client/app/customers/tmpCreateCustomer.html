@@ -1,0 +1,49 @@
+
+<div class="row col-md-offset-3 col-md-6">
+  <br>
+  <form class="form-group" ng-submit="createCustomer()">
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="form-group">
+          <label class="control-label">Full Name</label>
+          <input type="text" name="shipName" ng-model="customer.name" class="form-control" required>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="form-group">
+          <label class="control-label">Address 1</label>
+          <input type="text" name="address1" ng-model="customer.address1" class="form-control" required>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label class="control-label">Address 2</label>
+          <input type="text" name="address2" ng-model="customer.address2" class="form-control">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label class="control-label">State</label>
+          <input type="text" name="state" ng-model="customer.state" class="form-control" required>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label class="control-label">City</label>
+          <input type="text" name="city" ng-model="customer.city" class="form-control" required>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label class="control-label">Zip</label>
+          <input type="text" name="zip" ng-model="customer.zip" class="form-control" required>
+        </div>
+      </div>
+    </div>
+    <input type="submit">
+  </form>
+</div>

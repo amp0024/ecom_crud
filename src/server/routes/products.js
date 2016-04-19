@@ -12,7 +12,6 @@ router.get('/', function(req, res, next) {
 router.get('/product/:product_id', function(req, res, next){
   query.getProduct(req.params.product_id).then(function(product){
     res.json(product);
-    // res.render('productView', { products: product });
   });
 });
 

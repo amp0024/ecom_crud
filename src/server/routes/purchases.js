@@ -13,9 +13,11 @@ router.get('/mfc/:mfc_id/individual', function(req, res, next){
   query.getSalesTotals(req.params.mfc_id).then(function(data){
     var total = 0;
     var count = 0;
+    console.log(data);
     var returnData = data.reduce(function(prev, curr){
       if (!prev[curr.name]){
         prev[curr.name] = {};
+        prev[curr.name].product_id = curr.product_id;
         prev[curr.name].name = curr.name;
         prev[curr.name].total = curr.price * curr.quantity;
         prev[curr.name].quantity = curr.quantity;

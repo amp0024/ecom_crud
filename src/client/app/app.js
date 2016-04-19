@@ -10,12 +10,12 @@ angular.module('ecomApp', ['ngRoute', 'ngStorage', 'angular-loading-bar', 'ngFla
     .when('/', {
       templateUrl: '/app/views/home.html',
       css: '/styles/css/main.css',
-      controller: 'productCtrl'
+      controller: 'ProductCtrl'
     })
     .when('/products/:product_id', {
       templateUrl: '/app/views/productView.html',
       css: '/styles/css/main.css',
-      controller: 'singleProductCtrl'
+      controller: 'SingleProductCtrl'
     })
     .when('/login', {
       templateUrl: '/app/views/login.html',
@@ -43,7 +43,7 @@ angular.module('ecomApp', ['ngRoute', 'ngStorage', 'angular-loading-bar', 'ngFla
     })
     .when('/products', {
       templateUrl: '/app/views/products.html',
-      controller: 'productCtrl'
+      controller: 'ProductCtrl'
     })
     .when('/orders', {
       templateUrl: '/app/orders/orders.html',
@@ -52,6 +52,14 @@ angular.module('ecomApp', ['ngRoute', 'ngStorage', 'angular-loading-bar', 'ngFla
     .when('/manufacturers', {
       templateUrl: '/app/views/manufacturers.html',
       controller: 'AllMfcCtrl'
+    })
+    .when('/product/create', {
+      templateUrl: '/app/views/tmpCreateProduct.html',
+      controller: 'ProductCtrl'
+    })
+    .when('/product/:product_id/edit', {
+      templateUrl: '/app/views/tmpEditProduct.html',
+      controller: 'SingleProductCtrl'
     })
 
     $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {

@@ -43,7 +43,6 @@ angular.module('ecomApp')
           $scope.status = 'Unable to load order data: ' + error.message;
         })
     }
-
     getMfcOrders();
 
   }]);

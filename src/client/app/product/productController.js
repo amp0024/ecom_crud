@@ -1,6 +1,9 @@
  angular.module('ecomApp')
   .controller('productCtrl', ['$scope', '$http', '$routeParams', 'productFactory', '$localStorage', function($scope, $http, $routeParams, productFactory, $localStorage){
 
+    if (!$localStorage.token){
+      $localStorage.$reset();
+    }
     $scope.ordered = $localStorage.setOrdered;
     console.log($scope.ordered);
 

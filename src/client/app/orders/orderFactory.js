@@ -1,6 +1,6 @@
 angular.module('ecomApp')
   .factory('orderFactory', ['$http', '$localStorage', function($http, $localStorage){
-        var urlBase = '/api/purchases/';
+        var urlBase = '/api/safe/purchases/';
         var orderFactory = {};
         var user_id = $localStorage.user;
 

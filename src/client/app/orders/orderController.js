@@ -14,7 +14,9 @@
     getOrders();
   }])
   .controller('MfcOrderCtrl', ['$scope', '$http', '$routeParams', 'orderFactory', '$localStorage', function($scope, $http, $routeParams, orderFactory, $localStorage){
-    var mfc_id = $localStorage;
+    var mfc_id = $localStorage.mfc_id;
+    var token = $localStorage.token;
+    console.log(token);
     console.log(mfc_id);
 
     $scope.changeStatus = function(order_id){

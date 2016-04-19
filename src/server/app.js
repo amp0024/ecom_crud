@@ -137,7 +137,7 @@ app.use('/api/admin/admins', admins);
 app.use('/api/safe/customers', customers);
 app.use('/api/safe/carts', carts);
 app.use('/api/charge', charge);
-app.use('/api/purchases', purchases);
+app.use('/api/safe/purchases', purchases);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

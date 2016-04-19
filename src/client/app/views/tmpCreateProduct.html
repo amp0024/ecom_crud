@@ -1,21 +1,39 @@
 
 <div class="container">
-    <div class="row col-md-offset-3 col-md-6  text-center">
-      <form ng-submit="createProduct()">
-        <h5>name</h5>
-        <input type="text" ng-model="product.name"><br>
-        <h5>type</h5>
-        <input type="text" ng-model="product.type"><br>
-        <h5>price</h5>
-        <input type="text" ng-model="product.price"><br>
-        <h5>volume</h5>
-        <input type="text" ng-model="product.volume"><br>
-        <h5>Description</h5>
-        <textarea ng-model="product.description">
-        </textarea><br>
-        <h5>img url</h5>
-        <input type="text" ng-model="product.img_url"><br>
-        <input type="submit">
-      </form>
+    <div class="row">
+<div class="col-md-5 col-md-offset-1 mt-30 mb-100 {
+    margin-bottom: 100px;}">
+    <div class="content">
+        <h1 class="page-header">Create Product</h1>
+        <p class="lead">Fill out the form below to create products <b>to be added to your store.</b></p>
+        <div class="panel panel-default">
+                            <div class="panel-body">
+              <form ng-submit="createProduct()">
+                <div class="input-group">
+                  
+                    <input type="text" ng-model="product.name" placeholder="Product Name" class="form-control"><br>
+                  
+                    <input type="text" ng-model="product.type" placeholder="Product Type/Category" class="form-control"><br>
+         
+                    <input type="text" ng-model="product.price" placeholder="Price" class="form-control"><br>
+                
+                    <input type="text" ng-model="product.volume" placeholder="Volume" class="form-control"><br>
+                
+                    <textarea ng-model="product.description" placeholder="Description" class="form-control">
+                    </textarea><br><br>
+          
+                    <input type="text" ng-model="product.img_url" placeholder="Product Image" class="form-control"><br>
+                    <span class="input-group-btn"><button class="btn btn-primary btn-circle" type="submit">Submit</button></span>
+                </div>
+              </form>
+            </div>
+        </div>
     </div>
 </div>
+<div class="col-md-5 col-md-offset-1 text-center mt-100">
+                    <div class="phone">
+                        <img class="img-responsive img-rounded mt-30" src="./img/registeradmin.png">
+                    </div>
+                </div>
+              </div>
+            </div>

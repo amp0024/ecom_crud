@@ -3,7 +3,7 @@
 
 /* The main app with route configurations */
 
-angular.module('ecomApp', ['ngRoute', 'ngStorage', 'angular-loading-bar'])
+angular.module('ecomApp', ['ngRoute', 'ngStorage', 'angular-loading-bar', 'ngFlash'])
 .config(function($routeProvider, $httpProvider){
     Stripe.setPublishableKey('pk_test_18jB465AmfCTngdGeiBtSqqp');
     $routeProvider

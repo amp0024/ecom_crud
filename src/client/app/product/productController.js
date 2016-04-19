@@ -1,6 +1,22 @@
  angular.module('ecomApp')
   .controller('productCtrl', ['$scope', '$http', '$routeParams', 'productFactory', '$localStorage', function($scope, $http, $routeParams, productFactory, $localStorage){
 
+    $scope.ordered = $localStorage.setOrdered;
+    console.log($scope.ordered);
+
+    $scope.deleteOrderPopup = function(){
+      console.log("lakjsdflkajsdfklj");
+      $localStorage.setOrdered = false;
+      $scope.ordered = false;
+    }
+
+    $scope.goToOrders = function(){
+      console.log("lajsdlkfjasl");
+      $localStorage.setOrdered = false;
+      $scope.ordered = false;
+      window.location = '/#/orders';
+    }
+
     function getProducts(){
       productFactory.getProducts()
         .success(function(data) {
@@ -23,7 +39,7 @@
         });
     };
   }])
-  .controller('singleProductCtrl', ['$scope', '$http', '$routeParams', 'productFactory', 'cartFactory', '$localStorage', function($scope, $http, $routeParams, productFactory, cartFactory, $localStorage){
+  .controller('singleProductCtrl', ['$scope', '$http', '$routeParams', 'productFactory', 'cartFactory', '$localStorage', 'Flash', function($scope, $http, $routeParams, productFactory, cartFactory, $localStorage, Flash){
 
     var product_id = $routeParams.product_id;
     function getProduct(product_id){
@@ -39,6 +55,11 @@
     $scope.addToCart = function(){
       var cart = cartFactory.getLocalCart();
       var product_id = $routeParams.product_id;
+      if (!$localStorage.token){
+        var message = 'Please login to create an order.';
+        var id = Flash.create('warning', message);
+        window.location = '/#/login'
+      }
       productFactory.addToCart(product_id, cart)
         .success(function(data){
           window.location ='/';

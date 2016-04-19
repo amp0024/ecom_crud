@@ -7,6 +7,7 @@ exports.up = function(knex, Promise) {
     table.decimal('price');
     table.string('volume');
     table.string('img_url');
+    table.text('description');
     table.integer('mfc_id');
     table.integer('inventory');
   });

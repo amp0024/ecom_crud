@@ -17,7 +17,7 @@
       }
     </style>
   </head>
-  <body ng-cloak>
+  <body ng-cloak ng-controller="AuthCtrl">
   <div class="wrapper">
     <nav class="navbar navbar-default" role="navigation">
         <div class="container">
@@ -37,7 +37,7 @@
           <ul class="nav navbar-nav">
             <li><a href="/#/">Home</a></li>
             <li><a href="/#/">About</a></li>
-
+            <li data-ng-hide="!token"><a href="/#/profile/{{user_id}}">Profile</a>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/#/products">Beer List</a></li>
@@ -49,7 +49,7 @@
             </li>
 
             <li data-ng-hide="!token" ng-click="toggleCart()"><a>Shopping Cart {{cart.length}}</a></li>
-            <li data-ng-hide="!token"><button type="button" class="btn btn-primary navbar-btn btn-circle" ng-controller="AuthCtrl" ng-click="logout()">Logout</button></li>
+            <li data-ng-hide="!token"><button type="button" class="btn btn-primary navbar-btn btn-circle" ng-click="logout()">Logout</button></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -140,6 +140,8 @@
     <script src="./app/charge/chargeController.js"></script>
     <script src="./app/orders/orderController.js"></script>
     <script src="./app/orders/orderFactory.js"></script>
+    <script src="./app/customers/customerController.js"></script>
+    <script src="./app/customers/customerFactory.js"></script>
 
 
   </body>

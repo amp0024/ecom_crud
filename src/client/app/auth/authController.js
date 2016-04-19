@@ -42,6 +42,7 @@
                    window.location = "/"
                });
            };
+           $scope.user_id = $localStorage.user;
            $scope.token = $localStorage.token;
            $scope.tokenClaims = Auth.getTokenClaims();
        }])

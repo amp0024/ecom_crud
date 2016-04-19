@@ -61,6 +61,10 @@ angular.module('ecomApp', ['ngRoute', 'ngStorage', 'angular-loading-bar', 'ngFla
       templateUrl: '/app/views/tmpEditProduct.html',
       controller: 'SingleProductCtrl'
     })
+    .when('/profile/:customer_id', {
+      templateUrl: '/app/customers/tmpCreateCustomer.html',
+      controller: 'CustomerCtrl'
+    })
 
     $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {
    return {

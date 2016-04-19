@@ -24,7 +24,11 @@ angular.module('ecomApp')
           $scope.status = error.message;
         });
     }
-    getCartProducts();
+
+    if ($localStorage.cart){
+      getCartProducts();
+
+    }
 
     $scope.toggleCart = function(){
       $scope.showCart = !$scope.showCart;

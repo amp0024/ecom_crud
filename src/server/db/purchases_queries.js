@@ -44,5 +44,9 @@ module.exports = {
     console.log(order_id);
     return Purchases().where({'order_id': order_id})
                       .update('order_status', 'shipped');
+  },
+  getSalesTotals: function(mfc_id){
+    return Purchases().innerJoin('products', 'purchases.product_id', 'products.id')
+                      .where({'products.mfc_id': mfc_id});
   }
 }

@@ -1,22 +1,21 @@
 'use strict';
 
-
 /* The main app with route configurations */
 
-angular.module('ecomApp', ['ngRoute', 'ngStorage', 'angular-loading-bar'])
+angular.module('ecomApp', ['ngRoute', 'ngStorage', 'angular-loading-bar', 'ngFlash'])
 .config(function($routeProvider, $httpProvider){
     Stripe.setPublishableKey('pk_test_18jB465AmfCTngdGeiBtSqqp');
     $routeProvider
     /* LANDING PAGE */
     .when('/', {
-        templateUrl: '/app/views/home.html',
-        css: '/styles/css/main.css',
-        controller: 'productCtrl'
+      templateUrl: '/app/views/home.html',
+      css: '/styles/css/main.css',
+      controller: 'productCtrl'
     })
     .when('/products/:product_id', {
-        templateUrl: '/app/views/productView.html',
-        css: '/styles/css/main.css',
-        controller: 'singleProductCtrl'
+      templateUrl: '/app/views/productView.html',
+      css: '/styles/css/main.css',
+      controller: 'singleProductCtrl'
     })
     .when('/login', {
       templateUrl: '/app/views/login.html',

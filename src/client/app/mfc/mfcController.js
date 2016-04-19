@@ -33,17 +33,15 @@ angular.module('ecomApp')
     }
     getMfcProducts();
 
-    function getMfcOrders(){
-      orderFactory.getOrdersByMfc(mfc_id)
+    function getMfcSales(){
+      orderFactory.getSales(mfc_id)
         .success(function(data){
-          console.log(data);
-          $scope.orders = data;
+          $scope.sales = data;
         })
         .error(function(error){
-          $scope.status = 'Unable to load order data: ' + error.message;
+          $scope.status = 'Unable to load sales data ' + error.message;
         })
     }
-
-    getMfcOrders();
+    getMfcSales();
 
   }]);

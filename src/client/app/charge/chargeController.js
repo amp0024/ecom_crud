@@ -5,7 +5,6 @@ angular
 PaymentController.$inject = ['$http','$window', '$localStorage', 'cartFactory','orderFactory'];
 function PaymentController($http, $window, $localStorage, cartFactory, orderFactory) {
   var self = this;
-
   var cart = cartFactory.getLocalCart();
   var user = $localStorage.user;
   self.ship = {};

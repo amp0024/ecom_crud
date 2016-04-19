@@ -89,7 +89,8 @@ router.post('/login', function(req, res, next) {
               success: true,
               user: user.id,
               admin: user.is_admin,
-              mfc_id: user.site_id
+              mfc_id: user.site_id,
+              token: token
             })
           } else {
             cart.createCart(user.id).then(function(cartData){

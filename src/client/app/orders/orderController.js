@@ -14,14 +14,29 @@
     getOrders();
   }])
   .controller('MfcOrderCtrl', ['$scope', '$http', '$routeParams', 'orderFactory', '$localStorage', function($scope, $http, $routeParams, orderFactory, $localStorage){
-    var mfc_id = $localStorage;
+    var mfc_id = $localStorage.mfc_id;
+    var token = $localStorage.token;
+    console.log(token);
     console.log(mfc_id);
+
+    function getMfcOrders(){
+      orderFactory.getOrdersByMfc(mfc_id)
+        .success(function(data){
+          console.log(data);
+          $scope.orders = data;
+        })
+        .error(function(error){
+          $scope.status = 'Unable to load order data: ' + error.message;
+        })
+    }
+    getMfcOrders();
 
     $scope.changeStatus = function(order_id){
       console.log("Change status!!");
       orderFactory.changeStatus(order_id)
         .success(function(data){
           console.log($scope.orders);
+          getMfcOrders();
         })
         .error(function(error){
           $scope.status = 'Couldn\'t change order details: ' + error.message;

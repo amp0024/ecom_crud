@@ -4,7 +4,18 @@
     <meta charset="utf-8">
     <title>{{ title }}</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/angular-flash.min.css">
     <link rel="stylesheet" href="/css/main.css">
+    <style>
+      .ordered {
+        position: absolute;
+        width: 100%;
+        top: 120px;
+        z-index: 99;
+        background-color: white;
+        color: blue;
+      }
+    </style>
   </head>
   <body ng-cloak>
   <div class="wrapper">
@@ -46,6 +57,15 @@
     <div>
       <shopping-cart></shopping-cart>
     </div>
+    <div class="ordered text-center" ng-controller="productCtrl" ng-show="ordered">
+      <button class="btn btn-default" ng-click="deleteOrderPopup()">
+        <h1>Close Popup!</h1>
+      </button>
+      <button class="btn btn-default" ng-click="goToOrders()">
+        <h1>Go to Orders!</h1>
+      </button>
+    </div>
+    <flash-message duration="5000" show-close="true" on-dismiss="myCallback(flash)" ></flash-message>
     <ng-view></ng-view>
       <section class="footer">
         <div class="container">
@@ -55,7 +75,7 @@
                       <h4>Services</h4>
                       <ul>
                           <li class="line_rv"><a href="canon-printer-support.php">Canon Printer Support</a></li>
-                   
+
                             <li><a href="hp-printer-support.php">Hp printer Support</a></li>
                             <li><a href="dell-printer-support.php">Dell Printer Support</a></li>
                             <li><a href="epson-printer-support.php">Epson printer Support</a></li>
@@ -74,8 +94,8 @@
                             <li><a href="brother-printer-support.php">Brother printer support</a></li>
                             <li><a href="zebra-printer-support.php">Zebra printer support</a></li>
                             <li><a href="lenovo-printer-support.php">Lenovo printer Support</a></li>
-                           
-                            
+
+
                         </ul>
                     </div>
                 </div>
@@ -85,7 +105,7 @@
                       <p>Printer customer Support</p>
                 <p>USA (TOLL FREE) 9125772929<br>
 
-            
+
                     </p></div>
                 </div>
             </div>
@@ -95,7 +115,7 @@
               <small><a href="/#/admin/login">Admin Login</a></small>
           </div>
     </section>
-      
+
   </div> <!-- end wrapper -->
     <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -105,6 +125,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-route.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.10/ngStorage.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.js"></script>
+    <script src="./js/angular-flash.min.js"></script>
     <script src="./app/app.js"></script>
     <script src="./app/product/productController.js"></script>
     <script src="./app/product/productFactory.js"></script>

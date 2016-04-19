@@ -1,62 +1,74 @@
-<header class="header">
-
-            <div class="container">
-            <br>
-            <br>
-              <div class="row">
-              <div class="col-xs-12 col-sm-4 col-md-12">
-
-                            <h1 class="page-header">Your current inventory</h1>
-              </div>
-
+      <header class="header">
+        <div class="container">
+          <div class="row">
+            <table class="table"> <h2>Sales Totals</h2>
+              <thead>
+                <tr>
+                  <th class="text-center"><h1>Products Sold</h1></th>
+                  <th class="text-center"><h1>Total Revenue</h1></th>
+                  <th class="text-center"><h1>Top Seller</h1></th>
+                </tr>
+              </thead>
+              <tbody >
+                <tr>
+                  <td class="text-center">{{sales.count}}</td>
+                  <td class="text-center">{{sales.total}}</td>
+                  <td class="text-center">{{sales.top.name}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <table class="table"> <h2>Inventory & Itemized Sales</h2>
+              <thead>
+                <tr>
+                  <th class="text-center">Item</th>
+                  <th class="text-center">Remaining Inventory</th>
+                  <th class="text-center">Individual Sales</th>
+                  <th class="text-center">Individual Revenue</th>
+                  <th class="text-center">Edit</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="sale in sales.data">
+                  <td class="text-center">{{sale.name}}</td>
+                  <td class="text-center">{{sale}}</td>
+                  <td class="text-center">{{sale.quantity}}</td>
+                  <td class="text-center">{{sale.total}}</td>
+                  <td class="text-center"><a class="btn btn-default">Edit</a></td>
+                </tr>
+              </tbody>
+            </table>
 
             </div>
-                <div class="row">
-                  <form ng-submit="createProduct()">
-                    <h5>name</h5>
-                    <input type="text" ng-model="product.name"><br>
-                    <h5>type</h5>
-                    <input type="text" ng-model="product.type"><br>
-                    <h5>price</h5>
-                    <input type="text" ng-model="product.price"><br>
-                    <h5>volume</h5>
-                    <input type="text" ng-model="product.volume"><br>
-                    <h5>img url</h5>
-                    <input type="text" ng-model="product.img_url"><br>
-                    <input type="submit">
-                  </form>
-                </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-4 col-md-3"  ng-repeat="product in mfcProducts">
+                  <div class="productbox">
+                    <img ng-src="{{product.img_url}}" class="img-responsive">
+                    <div class="producttitle">{{product.name}}</div>
+                    <p class="text-justify">The place to be.</p>
+                    <address>
+                      795 Folsom Ave, Suite 600<br>
+                      San Francisco, CA 94107<br>
+                      <abbr title="Phone">P:</abbr> (123) 456-7890
+                    </address>
 
-                <div class="row">
-                  <div class="col-xs-12 col-sm-4 col-md-3"  ng-repeat="product in mfcProducts">
-                        <div class="productbox">
-                          <img ng-src="{{product.img_url}}" class="img-responsive">
-                          <div class="producttitle">{{product.name}}</div>
-                          <p class="text-justify">The place to be.</p>
-                          <address>
-                            795 Folsom Ave, Suite 600<br>
-                            San Francisco, CA 94107<br>
-                            <abbr title="Phone">P:</abbr> (123) 456-7890
-                          </address>
-
-                          <address>
-                            <strong>Full Name</strong><br>
-                            <a href="mailto:#">{{product.name}}</a>
-                          </address>
-                          <div class="productprice">
-                              <div class="pull-right">
-                                  <a href="#" class="btn btn-success btm-sm" role="button">Delete <span class="glyphicon glyphicon-cutlery"></span></a>
-                              </div>
-                              <div class="pricetext">
-                                  <a href="#" class="btn btn-warning btm-sm" role="button">Edit <span class="glyphicon glyphicon-cog"></span></a>
-                              </div>
-
-                              </div>
+                    <address>
+                      <strong>Full Name</strong><br>
+                      <a href="mailto:#">{{product.name}}</a>
+                    </address>
+                    <div class="productprice">
+                        <div class="pull-right">
+                            <a href="#" class="btn btn-success btm-sm" role="button">Delete <span class="glyphicon glyphicon-cutlery"></span></a>
                         </div>
-                      </div>
+                        <div class="pricetext">
+                            <a href="#" class="btn btn-warning btm-sm" role="button">Edit <span class="glyphicon glyphicon-cog"></span></a>
+                        </div>
+
+                        </div>
+                  </div>
                 </div>
-                <br>
-                <br>
+              </div>
+              <br>
+              <br>
             </div>
         </header>
         <section class="section" ng-controller="MfcOrderCtrl">

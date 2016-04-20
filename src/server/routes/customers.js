@@ -8,12 +8,12 @@ var stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 //   res.render('index', { title: 'Express' });
 // });
 
-router.post('/stripe/customer', function(req, res, next){
-  console.log(req.body);
-  var token = req.body.token;
+// router.post('/stripe/customer', function(req, res, next){
+//   console.log(req.body);
+//   var token = req.body.token;
 
 
-})
+// })
 
 router.get('/profile/:customer_id', function(req, res, next){
   query.getCustomer(req.params.customer_id).then(function(customer){
@@ -22,19 +22,22 @@ router.get('/profile/:customer_id', function(req, res, next){
 });
 
 router.post('/profile', function(req, res, next){
-  console.log("Profile is running");
   var token = req.body.token;
-  console.log(req.body);
+  var inserter = req.body.customer;
   stripe.customers.create({
     description: 'Customer for test@example2.com',
     source: token
   }, function(err, customer) {
-    console.log(customer);
     stripe.customers.createSource(
       customer.id,
       {source: token},
       function(err, card) {
-        console.log("card?", card);
+
+        inserter.stripe_id = customer.id;
+        console.log(inserter);
+        query.createCustomer(inserter).then(function(data){
+          res.json("Successfully inserted customer")
+        })
       }
     );
   })

@@ -11,26 +11,17 @@
   CustomerCtrl.$inject = ['$scope', '$localStorage', '$http', 'customerService'];
 
   function CustomerCtrl($scope, $localStorage, $http, customerService){
-
-    $scope.createCustomer = function(){
-      var customer = $scope.customer;
-      customer.user_id = $localStorage.user;
-      console.log(customer);
-      customerService.createCustomer(customer)
-        .success(function(data){
-          console.log(data);
-        }).error(function(error){
-          $scope.status = error.message;
-        });
-    }
     $scope.createStripeCustomer = function(){
       console.log($scope.card);
+      var customer = $scope.customer;
+      customer.user_id = $localStorage.user;
       Stripe.card.createToken($scope.card, function(status, response){
         console.log(status);
         if (status === 200){
           var data = {
             token: response.id,
-            card: $scope.card
+            card: $scope.card,
+            customer: $scope.customer
           }
         }
         $http

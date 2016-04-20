@@ -1,6 +1,6 @@
 var knex = require('./knex');
 
-function Customer() {
+function Customers() {
   return knex('customers');
 }
 
@@ -9,10 +9,12 @@ module.exports = {
     return Customers().select();
   },
   getCustomer: function(id){
-    return Customers().where('id', id);
+    return Customers().where('user_id', id);
   },
   createCustomer: function(customer){
     console.log("Query Customer ", customer);
-    return Customers().insert(customer, 'id');
+    return Customers().insert(customer).catch(function(err){
+      console.log(err);
+    });
   }
 }

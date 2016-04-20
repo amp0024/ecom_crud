@@ -130,6 +130,9 @@
             <span ng-if="(payment.Form.exp_year.$invalid && payment.Form.exp_year.$dirty)" class="glyphicon glyphicon-remove form-control-feedback"></span>
           </div>
         </div>
+        <div class="col-sm-4">
+          Use Card on File <input ng-model="payment.onfile" type="checkbox">
+        </div>
       </div>
       <button class="btn btn-primary" ng-disabled="(payment.Form.$invalid||payment.Form.$submitted)">Make Payment</button>
     </form>

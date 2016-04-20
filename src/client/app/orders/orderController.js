@@ -20,6 +20,7 @@
     function getMfcOrders(){
       orderFactory.getOrdersByMfc(mfc_id)
         .success(function(data){
+          console.log(data);
           $scope.orders = data;
         })
         .error(function(error){
@@ -29,12 +30,15 @@
     getMfcOrders();
 
     $scope.changeStatus = function(order_id){
-      orderFactory.changeStatus(order_id)
+      console.log("Change Status is running!!!");
+        orderFactory.changeStatus(order_id)
         .success(function(data){
-          getMfcOrders();
+          console.log("Success");
         })
         .error(function(error){
           $scope.status = 'Couldn\'t change order details: ' + error.message;
         })
-    }
+        console.log("Get mfc orders");
+        getMfcOrders();
+      }
   }])

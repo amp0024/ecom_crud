@@ -134,7 +134,7 @@ app.use('/auth', authRoutes);
 app.use('/api/products', products);
 app.use('/api/manufacturers', manufacturers);
 app.use('/api/admin/admins', admins);
-app.use('/api/safe/customers', customers);
+app.use('/api/customers', customers);
 app.use('/api/safe/carts', carts);
 app.use('/api/charge', charge);
 app.use('/api/safe/purchases', purchases);

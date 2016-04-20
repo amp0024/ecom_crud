@@ -1,7 +1,7 @@
 
 <div class="row col-md-offset-3 col-md-6">
   <br>
-  <form class="form-group" ng-submit="createCustomer()">
+  <form class="form-group" ng-submit="createStripeCustomer()">
     <div class="row">
       <div class="col-sm-8">
         <div class="form-group">
@@ -44,6 +44,55 @@
         </div>
       </div>
     </div>
+      <div class="container" id="credit">
+        <h2>Credit Card Information</h2>
+      </div>
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="form-group" ng-class="{ 'has-feedback': Form.payee.$dirty, 'has-success': (Form.payee.$valid && Form.payee.$dirty), 'has-error': (Form.payee.$invalid && Form.payee.$dirty) }">
+            <label class="control-label">Card Holder's Name</label>
+            <input type="text" name="payee" class="form-control" ng-model="payee" placeholder="Mr A Smith" required ng-minlength="2">
+            <span ng-if="(Form.payee.$valid && Form.payee.$dirty)" class="glyphicon glyphicon-ok form-control-feedback"></span>
+            <span ng-if="(Form.payee.$invalid && Form.payee.$dirty)" class="glyphicon glyphicon-remove form-control-feedback"></span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="form-group" ng-class="{ 'has-feedback': Form['card-number'].$dirty, 'has-success': (Form['card-number'].$valid && Form['card-number'].$dirty), 'has-error': (Form['card-number'].$invalid && Form['card-number'].$dirty) }">
+            <label class="control-label">Card Number</label>
+            <input type="text" name="card-number" class="form-control" ng-model="card.number" placeholder="4242424242424242" required ng-pattern="/^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|6(?:011|5[0-9]{2})[0-9]{12}|(?:2131|1800|35\d{3})\d{11})$/">
+            <span ng-if="(Form['card-number'].$valid && Form['card-number'].$dirty)" class="glyphicon glyphicon-ok form-control-feedback"></span>
+            <span ng-if="(Form['card-number'].$invalid && Form['card-number'].$dirty)" class="glyphicon glyphicon-remove form-control-feedback"></span>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group" ng-class="{ 'has-feedback': Form.cvc.$dirty, 'has-success': (Form.cvc.$valid && Form.cvc.$dirty), 'has-error': (Form.cvc.$invalid && Form.cvc.$dirty) }">
+            <label class="control-label">CVC</label>
+            <input type="text" name="cvc" class="form-control" ng-model="card.cvc" placeholder="123" required ng-maxlength="3" ng-pattern="/[0-9]{3}/">
+            <span ng-if="(Form.cvc.$valid && Form.cvc.$dirty)" class="glyphicon glyphicon-ok form-control-feedback"></span>
+            <span ng-if="(Form.cvc.$invalid && Form.cvc.$dirty)" class="glyphicon glyphicon-remove form-control-feedback"></span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group" ng-class="{ 'has-feedback': Form.exp_month.$dirty, 'has-success': (Form.exp_month.$valid && Form.exp_month.$dirty), 'has-error': (Form.exp_month.$invalid && Form.exp_month.$dirty) }">
+            <label class="control-label">Expiry Month</label>
+            <input type="text" name="exp_month" class="form-control" ng-model="card.exp_month" placeholder="06" required ng-pattern="/(0[1-9]|1[0-2])/">
+            <span ng-if="(Form.exp_month.$valid && Form.exp_month.$dirty)" class="glyphicon glyphicon-ok form-control-feedback"></span>
+            <span ng-if="(Form.exp_month.$invalid && Form.exp_month.$dirty)" class="glyphicon glyphicon-remove form-control-feedback"></span>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group" ng-class="{ 'has-feedback': Form.exp_year.$dirty, 'has-success': (Form.exp_year.$valid && Form.exp_year.$dirty), 'has-error': (Form.exp_year.$invalid && Form.exp_year.$dirty) }">
+            <label class="control-label">Expiry Year</label>
+            <input type="text" name="exp_year" class="form-control" ng-model="card.exp_year" placeholder="2016" required ng-pattern="/20(1[6-9]|2[0-9])/">
+            <span ng-if="(Form.exp_year.$valid && Form.exp_year.$dirty)" class="glyphicon glyphicon-ok form-control-feedback"></span>
+            <span ng-if="(Form.exp_year.$invalid && Form.exp_year.$dirty)" class="glyphicon glyphicon-remove form-control-feedback"></span>
+          </div>
+        </div>
+      </div>
     <input type="submit">
   </form>
 </div>

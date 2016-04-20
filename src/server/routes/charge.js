@@ -28,14 +28,42 @@ var stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 var query = require('../db/purchases_queries.js');
 var cart = require('../db/shopping_cart_queries.js');
 var purchase = require('../db/purchases_queries.js');
-
+var customers = require('../db/customers_queries.js');
 
 router.post("/", function(req, res) {
   var token = req.body.token;
+  // if (req.body.onfile){
+  //   console.log("Card is on file!!!!");
+  //   console.log(req.body.user.stripe_id);
+  stripe.customers.retrieve(
+    req.body.user.stripe_id,
+    function(err, customer) {
+      console.log("Here's the customer object: ", customer);
+    }
+  );
   cart.getCheckout(req.body.cart).then(function(data){
     total = data.reduce(function(prev, curr){
       return prev + parseFloat(curr.price);
     }, 0)
+    customers.getCustomer(req.body.user).then(function(data){
+      console.log(req.body.user);
+      stripe.customers.retrieve(
+        data[0].stripe_id,
+        function(err, customer) {
+          console.log("Here's the customer object: ", customer);
+        }
+      );
+      if (data[0].stripe_id){
+        stripe.charges.create({
+          amount: parseInt(parseFloat(total * 100), 10),
+          currency: 'usd',
+          customer: data[0].stripe_id
+        }).then(function(charge){
+          console.log(charge);
+          console.log("CUSTOMER WAS PROPERLY CHARGED!");
+        })
+      }
+    })
     var charge = stripe.charges.create({
       amount: parseInt(parseFloat(total * 100), 10),
       source: token,
@@ -66,7 +94,7 @@ router.post("/", function(req, res) {
       item.ship = req.body.ship;
       item.user_id = req.body.user;
       purchase.createPurchase(item).then(function(data){
-        console.log('yay!');
+        console.log('Purchase Created');
       })
     })
   })

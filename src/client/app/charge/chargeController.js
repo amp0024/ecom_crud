@@ -20,6 +20,7 @@ function PaymentController($http, $window, $localStorage, cartFactory, orderFact
           cart: cart,
           user: user,
           card: self.card,
+          onfile: self.onfile,
           token: response.id,
           amount: self.amount,
           currency: "usd",
@@ -48,6 +49,8 @@ function PaymentController($http, $window, $localStorage, cartFactory, orderFact
       }
     });
   }
+
+
 
   self.reset = function() {
     self.card = {};

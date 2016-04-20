@@ -9,12 +9,10 @@ angular.module('ecomApp', ['ngRoute', 'ngStorage', 'angular-loading-bar', 'ngFla
     /* LANDING PAGE */
     .when('/', {
       templateUrl: '/app/views/home.html',
-      css: '/styles/css/main.css',
       controller: 'ProductCtrl'
     })
     .when('/products/:product_id', {
       templateUrl: '/app/views/productView.html',
-      css: '/styles/css/main.css',
       controller: 'SingleProductCtrl'
     })
     .when('/login', {

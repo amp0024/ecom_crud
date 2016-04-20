@@ -37,7 +37,7 @@
     <h2>Shipping Information</h2>
   </div>
   <div class="container"  ng-controller="PaymentController as payment">
-    <form class="form" name="payment.Form" ng-hide="payment.paymentSuccessful" ng-submit="payment.pay()">
+    <form class="form" name="payment.Form" ng-hide="payment.paymentSuccessful" ng-submit="payment.decide()">
       <div class="row">
         <div class="col-sm-8">
           <div class="form-group">
@@ -80,8 +80,12 @@
           </div>
         </div>
       </div>
-
-
+    <div class="row">
+      <div class="col-sm-4">
+        <h4>Use Card on File <input type="checkbox" ng-model="payment.checked" ng-init="checked=false" /> </h4>
+      </div>
+    </div>
+    <span ng-if="!payment.checked">
       <div class="container" id="credit">
         <h2>Credit Card Information</h2>
       </div>
@@ -130,11 +134,13 @@
             <span ng-if="(payment.Form.exp_year.$invalid && payment.Form.exp_year.$dirty)" class="glyphicon glyphicon-remove form-control-feedback"></span>
           </div>
         </div>
-        <div class="col-sm-4">
-          Use Card on File <input ng-model="payment.onfile" type="checkbox">
-        </div>
       </div>
+
       <button class="btn btn-primary" ng-disabled="(payment.Form.$invalid||payment.Form.$submitted)">Make Payment</button>
+      </span>
+      <span ng-show="payment.checked">
+        <button class="btn btn-primary">Make Payment</button>
+      </span>
     </form>
     <div ng-show="payment.paymentSuccessful">
       <h2>Thank you!</h2>

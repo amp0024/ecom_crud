@@ -12,11 +12,20 @@ function PaymentController($http, $window, $localStorage, cartFactory, orderFact
   self.payee = null;
   self.amount = null;
 
+  self.decide = function(){
+    if (self.checked){
+      self.payOnFile();
+    } else {
+      self.pay();
+    }
+  }
+
   self.pay = function() {
     Stripe.card.createToken(self.card, function(status, response) {
       if(status === 200) {
         var data = {
           ship: self.ship,
+          onfile: self.checked,
           cart: cart,
           user: user,
           card: self.card,
@@ -35,9 +44,6 @@ function PaymentController($http, $window, $localStorage, cartFactory, orderFact
                 $localStorage.setOrdered = true;
               $http.post('/api/safe/carts', {'user': user}).then(function(response){
                 cartFactory.setLocalCart(response.data.cart);
-                //Why is the cart not being taken out of the cart popup when this is called?
-                console.log("Cart! ",   $localStorage.cart);
-                console.log("New Cart ID", response.data.cart);
                 $window.location.href = '/';
               })
             }
@@ -50,7 +56,30 @@ function PaymentController($http, $window, $localStorage, cartFactory, orderFact
     });
   }
 
-
+  self.payOnFile = function(){
+    var data = {
+      ship: self.ship,
+      cart: cart,
+      user: user,
+      amount: self.amount,
+      currency: "usd",
+    }
+    $http
+      .post('/api/charge/onfile', data)
+      .then(function(res) {
+        console.log("onfile Response ", res);
+        if(res.status === 200) {
+            console.log();
+            $localStorage.setOrdered = true;
+          $http.post('/api/safe/carts', {'user': user}).then(function(response){
+            cartFactory.setLocalCart(response.data.cart);
+            $window.location.href = '/';
+          })
+        } else {
+          self.paymentSuccessful = $localStorage.setOrdered;
+        }
+      })
+  }
 
   self.reset = function() {
     self.card = {};

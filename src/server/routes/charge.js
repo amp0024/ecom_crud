@@ -30,66 +30,83 @@ var cart = require('../db/shopping_cart_queries.js');
 var purchase = require('../db/purchases_queries.js');
 var customers = require('../db/customers_queries.js');
 
-router.post("/", function(req, res) {
-  var token = req.body.token;
-  // if (req.body.onfile){
-  //   console.log("Card is on file!!!!");
-  //   console.log(req.body.user.stripe_id);
-  stripe.customers.retrieve(
-    req.body.user.stripe_id,
-    function(err, customer) {
-      console.log("Here's the customer object: ", customer);
-    }
-  );
+router.post("/onfile", function(req, res, next){
   cart.getCheckout(req.body.cart).then(function(data){
     total = data.reduce(function(prev, curr){
       return prev + parseFloat(curr.price);
     }, 0)
     customers.getCustomer(req.body.user).then(function(data){
-      console.log(req.body.user);
-      stripe.customers.retrieve(
-        data[0].stripe_id,
-        function(err, customer) {
-          console.log("Here's the customer object: ", customer);
-        }
-      );
-      if (data[0].stripe_id){
-        stripe.charges.create({
-          amount: parseInt(parseFloat(total * 100), 10),
-          currency: 'usd',
-          customer: data[0].stripe_id
-        }).then(function(charge){
-          console.log(charge);
-          console.log("CUSTOMER WAS PROPERLY CHARGED!");
-        })
-      }
+      stripe.charges.create({
+        amount: parseInt(parseFloat(total * 100), 10),
+        currency: 'usd',
+        customer: data[0].stripe_id
+      }).then(function(err, charge){
+         if(err) {
+            return res.json({ message: err })
+          }
+          cart.deactivateCart(req.body.cart).then(function(data){
+            transporter.sendMail(mailOptionsCustomer, function(error, info){
+                if(error){
+                    return console.log(error);
+                }
+                console.log('Message sent: ' + info.response);
+            });
+            transporter.sendMail(mailOptionsMfc, function(error, info){
+                if(error){
+                    return console.log(error);
+                }
+                console.log('Message sent: ' + info.response);
+            });
+            console.log("Purchased with card on file!");
+            res.status(200).json({ message: "Payment successful" });
+          });
+      })
     })
-    var charge = stripe.charges.create({
-      amount: parseInt(parseFloat(total * 100), 10),
-      source: token,
-      currency: "usd",
-      description: 'TEST'
-    }, function(err, charge) {
-      if(err) {
-        return res.json({ message: err })
-      }
-      cart.deactivateCart(req.body.cart).then(function(data){
-        transporter.sendMail(mailOptionsCustomer, function(error, info){
-            if(error){
-                return console.log(error);
-            }
-            console.log('Message sent: ' + info.response);
-        });
-        transporter.sendMail(mailOptionsMfc, function(error, info){
-            if(error){
-                return console.log(error);
-            }
-            console.log('Message sent: ' + info.response);
-        });
-        res.status(200).json({ message: "Payment successful" });
-      });
-    });
+    data.forEach(function(item){
+      item.ship = req.body.ship;
+      item.user_id = req.body.user;
+      purchase.createPurchase(item).then(function(data){
+        console.log('Purchase Created');
+      })
+    })
+  })
+});
 
+router.post("/", function(req, res, next) {
+  var token = req.body.token;
+  cart.getCheckout(req.body.cart).then(function(data){
+    total = data.reduce(function(prev, curr){
+      return prev + parseFloat(curr.price);
+    }, 0)
+    customers.getCustomer(req.body.user).then(function(data){
+      var charge = stripe.charges.create({
+        amount: parseInt(parseFloat(total * 100), 10),
+        source: token,
+        currency: "usd",
+        description: 'TEST'
+      }, function(err, charge) {
+        if(err) {
+          return res.json({ message: err })
+        }
+        cart.deactivateCart(req.body.cart).then(function(data){
+          transporter.sendMail(mailOptionsCustomer, function(error, info){
+              if(error){
+                  return console.log(error);
+              }
+              console.log('Message sent: ' + info.response);
+          });
+          transporter.sendMail(mailOptionsMfc, function(error, info){
+              if(error){
+                  return console.log(error);
+              }
+              console.log('Message sent: ' + info.response);
+          });
+          console.log("Purchased w/ New Card!");
+          res.status(200).json({ message: "Payment successful" });
+        });
+      });
+
+    })
     data.forEach(function(item){
       item.ship = req.body.ship;
       item.user_id = req.body.user;

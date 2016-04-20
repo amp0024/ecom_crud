@@ -37,11 +37,19 @@
       product.mfc_id = $localStorage.mfc_id;
       productFactory.addProduct(product)
         .success(function(data){
+          alert('Pause!');
           window.location ='/#/admin';
         }).error(function(error){
           $scope.status = error.message;
         });
     };
+
+    $scope.fileNameChanged = function(ele){
+       $scope.product = {};
+       var files = "https://s3-us-west-2.amazonaws.com/ecom-app/"+ele.files[0].name;
+       console.log(files);
+       $scope.product.img_url = files;
+      };
   }])
   .controller('SingleProductCtrl', ['$scope', '$http', '$routeParams', 'productFactory', 'cartFactory', '$localStorage', 'Flash', function($scope, $http, $routeParams, productFactory, cartFactory, $localStorage, Flash){
 

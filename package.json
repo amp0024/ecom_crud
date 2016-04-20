@@ -8,6 +8,7 @@
   "dependencies": {
     "angular-credit-cards": "^2.4.3",
     "angular-stripe": "^4.2.12",
+    "aws-sdk": "^2.3.4",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.13.2",
     "chai": "^3.5.0",
@@ -24,6 +25,7 @@
     "lodash": "^4.11.1",
     "mocha": "^2.4.5",
     "morgan": "~1.6.1",
+    "multer": "^1.1.0",
     "nodemailer": "^2.3.2",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",

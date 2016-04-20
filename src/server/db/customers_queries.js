@@ -12,7 +12,6 @@ module.exports = {
     return Customers().where('user_id', id);
   },
   createCustomer: function(customer){
-    console.log("Query Customer ", customer);
     return Customers().insert(customer).catch(function(err){
       console.log(err);
     });

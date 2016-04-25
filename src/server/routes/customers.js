@@ -44,8 +44,14 @@ router.post('/profile', function(req, res, next){
 })
 
 router.get('/cardonfile/:customer_id', function(req, res, next){
+  console.log("Card On File");
   query.getCustomer(req.params.customer_id).then(function(customer){
-    res.json(customer);
+    console.log(customer);
+    if (customer[0].stripe_id){
+      res.json(true);
+    } else {
+      res.json(false);
+    }
   })
 })
 

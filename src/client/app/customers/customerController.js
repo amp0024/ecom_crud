@@ -31,5 +31,16 @@
           });
       })
     }
+
+  function showCard(){
+    var user_id = $localStorage.user;
+    return customerService.cardOnFile(user_id).then(function(data){
+      console.log(data);
+      $scope.showCard = data;
+    })
   }
+  showCard();
+
+  }
+
 })();

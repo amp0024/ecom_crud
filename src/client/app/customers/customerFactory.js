@@ -7,12 +7,13 @@ angular
 customerService.$inject = ['$http'];
 
 function customerService($http){
-  var urlBase = '/api/safe/customers';
+  var urlBase = '/api/customers';
 
   var services = {
     getCustomer: getCustomer,
     createCustomer: createCustomer,
-    updateCustomer: updateCustomer
+    updateCustomer: updateCustomer,
+    cardOnFile: cardOnFile
   };
 
   function getCustomer(id){
@@ -25,8 +26,12 @@ function customerService($http){
   };
 
   function updateCustomer(customer){
-    return $http.post(urlBase + '/update/' + id);
+    return $http.post(urlBase + '/update/' + customer);
   };
+
+  function cardOnFile(customer){
+    return $http.get(urlBase + '/cardonfile/' + customer);
+  }
 
   return services;
 }

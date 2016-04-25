@@ -44,10 +44,11 @@
         </div>
       </div>
     </div>
-      <div class="container" id="credit">
+    <div ng-hide="showCard.data">
+      <div class="container" id="credit" >
         <h2>Credit Card Information</h2>
       </div>
-      <div class="row">
+      <div class="row" ng-hide="showCard.data">
         <div class="col-sm-8">
           <div class="form-group" ng-class="{ 'has-feedback': Form.payee.$dirty, 'has-success': (Form.payee.$valid && Form.payee.$dirty), 'has-error': (Form.payee.$invalid && Form.payee.$dirty) }">
             <label class="control-label">Card Holder's Name</label>
@@ -93,6 +94,7 @@
           </div>
         </div>
       </div>
+    </div>
     <input type="submit">
   </form>
 </div>

@@ -65,11 +65,11 @@ angular.module('ecomApp', ['ngRoute', 'ngStorage', 'angular-loading-bar', 'ngFla
     })
 
     $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {
-   return {
+    return {
        'request': function (config) {
            config.headers = config.headers || {};
            if ($localStorage.token) {
-               config.headers['x-access-token'] = $localStorage.token;
+
            }
            return config;
        },

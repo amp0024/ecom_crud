@@ -34,7 +34,7 @@
 
                Auth.signup(formData, successAuth, function () {
                    $rootScope.error = 'Failed to signup';
-               })
+               });
            };
 
            $scope.logout = function () {

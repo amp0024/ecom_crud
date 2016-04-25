@@ -43,6 +43,12 @@ router.post('/profile', function(req, res, next){
   })
 })
 
+router.get('/cardonfile/:customer_id', function(req, res, next){
+  query.getCustomer(req.params.customer_id).then(function(customer){
+    res.json(customer);
+  })
+})
+
 router.post('/update', function(req, res, next){
   query.updateCustomer(req.body).then(function(customer){
     res.json(customer);

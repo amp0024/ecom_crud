@@ -69,7 +69,7 @@ angular.module('ecomApp', ['ngRoute', 'ngStorage', 'angular-loading-bar', 'ngFla
        'request': function (config) {
            config.headers = config.headers || {};
            if ($localStorage.token) {
-
+               config.headers['x-access-token'] = $localStorage.token;
            }
            return config;
        },

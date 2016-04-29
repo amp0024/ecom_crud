@@ -21,7 +21,7 @@ var customers = require('./routes/customers.js');
 var manufacturers = require('./routes/manufacturers.js');
 var admins = require('./routes/admins.js');
 var products = require('./routes/products.js');
-var carts = require('./routes/shoppingCart.js')
+var carts = require('./routes/shoppingCart.js');
 var authRoutes = require('./routes/auth_routes.js');
 var charge = require('./routes/charge.js');
 var purchases = require('./routes/purchases.js');
@@ -135,7 +135,7 @@ app.use('/auth', authRoutes);
 app.use('/api/products', products);
 app.use('/api/manufacturers', manufacturers);
 app.use('/api/admin/admins', admins);
-app.use('/api/customers', customers);
+app.use('/api/safe/customers', customers);
 app.use('/api/safe/carts', carts);
 app.use('/api/charge', charge);
 app.use('/api/safe/purchases', purchases);

@@ -7,7 +7,7 @@ angular
 customerService.$inject = ['$http'];
 
 function customerService($http){
-  var urlBase = '/api/customers';
+  var urlBase = '/api/safe/customers';
 
   var services = {
     getCustomer: getCustomer,

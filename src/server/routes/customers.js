@@ -4,16 +4,6 @@ var query = require('../db/customers_queries');
 
 var stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
-// router.get('/', function(req, res, next) {
-//   res.render('index', { title: 'Express' });
-// });
-
-// router.post('/stripe/customer', function(req, res, next){
-//   console.log(req.body);
-//   var token = req.body.token;
-
-
-// })
 
 router.get('/profile/:customer_id', function(req, res, next){
   query.getCustomer(req.params.customer_id).then(function(customer){

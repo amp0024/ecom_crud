@@ -9,6 +9,7 @@
     "angular-credit-cards": "^2.4.3",
     "angular-stripe": "^4.2.12",
     "aws-sdk": "^2.3.4",
+    "bcrypt": "^0.8.6",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.13.2",
     "chai": "^3.5.0",

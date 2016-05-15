@@ -28,6 +28,7 @@ function loginRedirect(req, res, next) {
   }
 }
 function hashing (password) {
+  console.log("hashing password!", password);
   var salt = bcrypt.genSaltSync(10);
   return bcrypt.hashSync(password, salt);
 }

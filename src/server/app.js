@@ -1,4 +1,4 @@
-require('dotenv').config();
+// require('dotenv').config();
 // *** main dependencies *** //
 var express = require('express');
 var path = require('path');

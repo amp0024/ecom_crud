@@ -1,35 +1,38 @@
-<section class="section">
-                <br/><br/><br/>
-
-        <!-- Plans -->
+<header id="page-top">
+    <div class="container">
+       
+            <div class="col-lg-12 text-center">
+                    <h1>View stores on gList</h1>
+            </div>
+    </div>
+</header>
         <section id="plans">
             <div class="container">
-                <div class="pull-middle">
-                        <h1 class="page-header">Check out some of our local Breweries.</h1>
-            </div>
-            <br>
+
                 <div class="row">
                     <!-- item -->
-                    <div class="col-md-3 text-center" ng-repeat="manufacturer in manufacturers">
+                    <div class="col-md-4 text-center" ng-repeat="manufacturer in manufacturers">
                         <div class="panel panel-pricing">
                             <div class="panel-heading">
-                                <i class="fa fa-desktop"></i>
-                                <h3>{{manufacturer.name}}</h3>
+                               
                             </div>
                             <div class="panel-body text-center">
-                                <img src="{{ manufacturer.img_url }}" height="200px">
+                   
+                                 <img src="{{ manufacturer.logo_url }}" width="70%">
+                              <!--   <img src="{{ manufacturer.background_header }}" width="100%"> -->
                             </div>
+                            
 
                             <ul class="list-group text-center">
-                                <li class="list-group-item"><i class="fa fa-check"></i>{{ manufacturer.contact }}</li>
+                                <li class="list-group-item"><i class="fa fa-check"></i><b>Phone number: {{ manufacturer.contact }}</b></li>
 
-                                <li class="list-group-item"><i class="fa fa-check"></i>{{ manufacturer.type }}</li>
-                                <li class="list-group-item"><i class="fa fa-check"></i>{{ manufacturer.location }}</li>
-                                    <li class="list-group-item"><i class="fa fa-check"></i>{{ manufacturer.logo_url }}</li>
+                            
+                                <li class="list-group-item"><i class="fa fa-check"></i><b>Location: {{ manufacturer.location }}</b></li>
+                                  
 
                             </ul>
                             <div class="panel-footer">
-                                <a class="btn btn-lg btn-block btn-success" href="/api/manufacturers/{{manufacturer.id}}">Learn more!</a>
+                                <a class="btn btn-lg btn-block btn-primary" href="/api/manufacturers/{{manufacturer.id}}">View {{ manufacturer.mfc_name }}'s store</a>
                             </div>
                         </div>
                     </div>

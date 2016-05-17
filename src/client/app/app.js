@@ -11,6 +11,10 @@ angular.module('ecomApp', ['ngRoute', 'ngStorage', 'angular-loading-bar', 'ngFla
       templateUrl: '/app/views/home.html',
       controller: 'ProductCtrl'
     })
+    .when('/about', {
+      templateUrl: '/app/views/about.html',
+      controller: 'ProductCtrl'
+    })
     .when('/products/:product_id', {
       templateUrl: '/app/views/productView.html',
       controller: 'SingleProductCtrl'

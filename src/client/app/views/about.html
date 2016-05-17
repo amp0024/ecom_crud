@@ -1,0 +1,40 @@
+
+<header id="page-top">
+    <div class="container">
+       
+            <div class="col-lg-12 text-center">
+                    <h1>Some items you cant live without...</h1>
+            </div>
+    </div>
+</header>
+
+    <section class="primary" id="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 text-center" ng-repeat="product in products">
+                            <div class="panel panel-pricing"><a href="/#/products/{{product.id}}">
+                                <div class="panel-heading">
+                                    <i class="fa fa-desktop"></i>
+                                    <h3>{{product.name}}</h3>
+                                </div>
+                                <div class="panel-body text-center">
+                                    <img ng-src="{{ product.img_url }}" height="200px">
+                                </div>
+
+                                <ul class="list-group text-center">
+                                    <li class="list-group-item">{{ product.type }}</li>
+                                </ul>
+                                
+                            </div></a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <a href="#"><h4>Browse more</h4></a>
+                    <br>
+                </div>
+            </div>
+
+    </section>
+
+

@@ -5,16 +5,13 @@
       $localStorage.$reset();
     }
     $scope.ordered = $localStorage.setOrdered;
-    console.log($scope.ordered);
 
     $scope.deleteOrderPopup = function(){
-      console.log("lakjsdflkajsdfklj");
       $localStorage.setOrdered = false;
       $scope.ordered = false;
     }
 
     $scope.goToOrders = function(){
-      console.log("lajsdlkfjasl");
       $localStorage.setOrdered = false;
       $scope.ordered = false;
       window.location = '/#/orders';
@@ -24,7 +21,6 @@
       productFactory.getProducts()
         .success(function(data) {
           $scope.products = data;
-          console.log($scope.products)
         }).error(function(error) {
           $scope.status = 'Unable to load book data: ' + error.message;
         });
@@ -33,7 +29,6 @@
 
     $scope.createProduct = function(){
       var product = $scope.product;
-      console.log($localStorage);
       product.mfc_id = $localStorage.mfc_id;
       productFactory.addProduct(product)
         .success(function(data){
@@ -47,22 +42,35 @@
     $scope.fileNameChanged = function(ele){
        $scope.product = {};
        var files = "https://s3-us-west-2.amazonaws.com/ecom-app/"+ele.files[0].name;
-       console.log(files);
        $scope.product.img_url = files;
       };
   }])
-  .controller('SingleProductCtrl', ['$scope', '$http', '$routeParams', 'productFactory', 'cartFactory', '$localStorage', 'Flash', function($scope, $http, $routeParams, productFactory, cartFactory, $localStorage, Flash){
+  .controller('SingleProductCtrl', ['$scope', '$localStorage', '$http', '$routeParams', 'productFactory', 'cartFactory', 'Flash', function($scope, $localStorage, $http, $routeParams, productFactory, cartFactory, Flash){
 
     var product_id = $routeParams.product_id;
     function getProduct(product_id){
       productFactory.getProduct(product_id)
         .success(function(data) {
+          console.log(data);
+          getMfcProducts(data[0].mfc_id);
           $scope.products = data;
+
         }).error(function(error) {
-          $scope.status = 'Unable to load book data: ' + error.message;
+          $scope.status = 'Unable to load product data: ' + error.message;
         });
       }
     getProduct(product_id);
+
+    function getMfcProducts(mfc_id){
+      productFactory.getProductByMfc(mfc_id)
+        .success(function(data){
+          $scope.mfcImg = data[0].logo_url;
+          $scope.mfcProducts = data;
+        }).error(function(error){
+          $scope.status = 'Unable to load mfcProduct data: ' + error.message;
+        });
+    }
+
 
     $scope.updateProduct = function(){
       var product = $scope.products[0];
@@ -73,8 +81,8 @@
         })
         .error(function(error){
           $scope.status = error.message;
-        })
-    }
+        });
+    };
 
     $scope.addToCart = function(){
       var cart = cartFactory.getLocalCart();
@@ -82,7 +90,7 @@
       if (!$localStorage.token){
         var message = 'Please login to create an order.';
         var id = Flash.create('warning', message);
-        window.location = '/#/login'
+        window.location = '/#/login';
       }
       productFactory.addToCart(product_id, cart)
         .success(function(data){

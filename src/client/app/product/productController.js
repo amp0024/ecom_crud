@@ -1,6 +1,7 @@
  angular.module('ecomApp')
   .controller('ProductCtrl', ['$scope', '$http', '$routeParams', 'productFactory', '$localStorage', function($scope, $http, $routeParams, productFactory, $localStorage){
 
+
     if (!$localStorage.token){
       $localStorage.$reset();
     }
@@ -54,7 +55,6 @@
           console.log(data);
           getMfcProducts(data[0].mfc_id);
           $scope.products = data;
-
         }).error(function(error) {
           $scope.status = 'Unable to load product data: ' + error.message;
         });
@@ -94,7 +94,9 @@
       }
       productFactory.addToCart(product_id, cart)
         .success(function(data){
-          window.location ='/';
+          $scope.toggleCart();
+          var message = 'Item added to cart!';
+          var id = Flash.create('success', message);
         }).error(function(error){
           $scope.status = error.message;
         });

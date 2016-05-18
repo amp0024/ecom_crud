@@ -2,7 +2,7 @@
 <div class="container">
 
 
-    
+
         <h1 class="page-header">Your Profile Details</h1>
           <p class="lead">Fill out the below information to save your profile details to make checkout a breeze.</b></p>
             <div class="panel panel-default">
@@ -16,7 +16,7 @@
             <input type="text" name="shipName" ng-model="customer.name" class="form-control" required placeholder="Full Name">
           </div>
         </div>
- 
+
             <div class="row">
               <div class="col-sm-6">
                 <div class="form-group">
@@ -102,9 +102,56 @@
                 </div>
               </div>
             </div>
+            <div ng-show="showCard.data">
+              <br>
+              <br>
+              <h3>Your card has already been saved</h3>
+              <!-- USING INLINE STYLING!!!! -->
+              <img src="http://creditcardchest.com/wp-content/uploads/2015/03/creditcardplaceholder.jpg" alt="credit_card" style="width: 200px; margin-left: 50px;">
+            </div>
         <span class="input-group-btn"><button class="btn btn-primary btn-circle" type="submit">Submit</button></span>
     </div>
   </form>
+
 </div>
+</div>
+<style>
+  img {
+    height: 100px;
+  }
+</style>
+<div class="container" ng-controller="OrderCtrl">
+  <hr>
+    <div class="row">
+        <div class="bs-example" data-example-id="simple-table">
+          <table class="table"> <caption><h1>Your Purchases</h1></caption>
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Image</th>
+                <th>Product</th>
+                <th>Ship Address</th>
+                <th>City</th>
+                <th>Time</th>
+                <th>Ship</th>
+              </tr>
+            </thead>
+            <tbody ng-repeat="order in orders">
+              <tr>
+                <th>{{order.order_id}}</th>
+                <th><img ng-src="{{order.img_url}}" alt="Beer"/></th>
+                <td>{{order.name}}</td>
+                <td>{{order.address1}}</td>
+                <td>{{order.city}}</td>
+                <td>{{order.purchase_time}}</td>
+                <td>
+                  <span ng-if="order.order_status==='active'">Not Shipped</span>
+                  <span ng-if="order.order_status==='shipped'">Shipped!</span></td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
 </div>

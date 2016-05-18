@@ -1,5 +1,5 @@
 angular.module('ecomApp')
-  .controller('CartCtrl', ['$scope', 'cartFactory', '$localStorage', function($scope, cartFactory, $localStorage){
+  .controller('CartCtrl', ['$scope', '$localStorage', 'cartFactory', function($scope, $localStorage, cartFactory){
     function getCheckout(){
       var cart = $localStorage.cart;
       cartFactory.getCheckout(cart)

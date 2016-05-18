@@ -2,8 +2,8 @@ angular
   .module('ecomApp')
   .controller('PaymentController', PaymentController);
 
-PaymentController.$inject = ['$http','$window', '$localStorage', 'cartFactory','orderFactory'];
-function PaymentController($http, $window, $localStorage, cartFactory, orderFactory) {
+PaymentController.$inject = ['$http','$window', '$localStorage', 'cartFactory','orderFactory', 'customerService'];
+function PaymentController($http, $window, $localStorage, cartFactory, orderFactory, customerService) {
   var self = this;
   var cart = cartFactory.getLocalCart();
   var user = $localStorage.user;
@@ -18,7 +18,18 @@ function PaymentController($http, $window, $localStorage, cartFactory, orderFact
     } else {
       self.pay();
     }
-  }
+  };
+
+  customerService.getCustomer(user)
+    .success(function(data){
+      if (data[0].address1 || data[0].zip){
+        self.shipName = data[0].name;
+        self.ship = data[0];
+      }
+    }).error(function(error){
+      $scope.status = 'Unable to retrieve customer data ' + error.message;
+    });
+
 
   self.pay = function() {
     Stripe.card.createToken(self.card, function(status, response) {
@@ -45,16 +56,16 @@ function PaymentController($http, $window, $localStorage, cartFactory, orderFact
               $http.post('/api/safe/carts', {'user': user}).then(function(response){
                 cartFactory.setLocalCart(response.data.cart);
                 $window.location.href = '/';
-              })
+              });
             }
             else {
 
               self.paymentSuccessful = $localStorage.setOrdered;
             }
-          })
+          });
       }
     });
-  }
+  };
 
   self.payOnFile = function(){
     var data = {
@@ -63,7 +74,7 @@ function PaymentController($http, $window, $localStorage, cartFactory, orderFact
       user: user,
       amount: self.amount,
       currency: "usd",
-    }
+    };
     $http
       .post('/api/charge/onfile', data)
       .then(function(res) {
@@ -74,12 +85,12 @@ function PaymentController($http, $window, $localStorage, cartFactory, orderFact
           $http.post('/api/safe/carts', {'user': user}).then(function(response){
             cartFactory.setLocalCart(response.data.cart);
             $window.location.href = '/';
-          })
+          });
         } else {
           self.paymentSuccessful = $localStorage.setOrdered;
         }
-      })
-  }
+      });
+  };
 
   self.reset = function() {
     self.card = {};
@@ -89,5 +100,5 @@ function PaymentController($http, $window, $localStorage, cartFactory, orderFact
     self.Form.$setPristine(true);
     // use vanilla JS to reset form to remove browser's native autocomplete highlighting
     document.getElementsByTagName('form')[0].reset();
-  }
+  };
 }
